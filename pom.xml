@@ -5,7 +5,7 @@
 	<groupId>DSAlgo</groupId>
 	<artifactId>DSAlgo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -26,6 +26,13 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version> <!-- or the latest version -->
+			<scope>provided</scope>
+		</dependency>
+
 		<!--
 		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
