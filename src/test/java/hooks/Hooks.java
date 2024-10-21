@@ -13,6 +13,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
+import utils.LogHelper;
 
 public class Hooks {
 	private static WebDriver driver;
@@ -20,32 +21,42 @@ public class Hooks {
 	static Scenario scenario;
 
 	@BeforeAll
-	public static void before() throws Throwable {
+	public static void initializeDriver() throws Throwable {
+		LogHelper.info("Initializing WebDriver...");
 		driverManager = new DriverManager();
 		driver = driverManager.SetupDriver();
-
+		LogHelper.info("WebDriver initialized successfully.");
 	}
 
 	@Before
 	public void scenario(Scenario scenario) {
-
+		Hooks.scenario = scenario;
+		LogHelper.info("Starting scenario: " + scenario.getName());
 	}
 
 	@AfterStep
-	public void afterstep(Scenario scenario) {
+	public void captureFailureDetails(Scenario scenario) {
 		if (scenario.isFailed()) {
-
-			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-			scenario.attach(screenshot, "image/png", "My screenshot");
-			Allure.addAttachment("Myscreenshot",
-					new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-
+			LogHelper.error("Scenario failed: " + scenario.getName());
+			try {
+				byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+				scenario.attach(screenshotBytes, "image/png", "Captured Screenshot");
+				ByteArrayInputStream screenshotStream = new ByteArrayInputStream(screenshotBytes);
+				Allure.addAttachment("Failure Screenshot", screenshotStream);
+				LogHelper.info("Screenshot captured for failed scenario: " + scenario.getName());
+			} catch (Exception e) {
+				LogHelper.error("Failed to capture screenshot: " + e.getMessage());
+			}
 		}
 	}
 
 	@AfterAll
-	public static void after() {
+	public static void tearDownDriver() {
 
-		driverManager.tearDown();
+		LogHelper.info("Tearing down WebDriver...");
+		if (driverManager != null) {
+			driverManager.tearDown();
+			LogHelper.info("WebDriver torn down successfully.");
+		}
 	}
 }
