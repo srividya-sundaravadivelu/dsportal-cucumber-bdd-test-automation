@@ -1,23 +1,19 @@
 package stepDefinitions;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import driver.DriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import utils.ConfigReader;
 
 public class RegistrationSteps {
-	WebDriver driver;
+	public static WebDriver driver = DriverManager.getdriver();
 
 	@Given("User open browser with url https:\\/\\/dsportalapp.herokuapp.com")
 	public void user_open_browser_with_url_https_dsportalapp_herokuapp_com() {
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().window().maximize();
-		driver.get("https://dsportalapp.herokuapp.com/");
-
+		String baseUrl = ConfigReader.getBaseUrl();
+		driver.get(baseUrl);
 	}
 
 	@Then("User should see Get Started page")
