@@ -14,6 +14,7 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
 import utils.LogHelper;
+import utils.WebDriverWaitUtility;
 
 public class Hooks {
 	private static WebDriver driver;
@@ -30,6 +31,7 @@ public class Hooks {
 
 	@Before
 	public void scenario(Scenario scenario) {
+		WebDriverWaitUtility.initializeWait(driver, 10);
 		Hooks.scenario = scenario;
 		LogHelper.info("Starting scenario: " + scenario.getName());
 	}
