@@ -13,6 +13,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
+import utils.ConfigReader;
 import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
@@ -30,8 +31,8 @@ public class Hooks {
 	}
 
 	@Before
-	public void scenario(Scenario scenario) {
-		WebDriverWaitUtility.initializeWait(driver, 10);
+	public void scenario(Scenario scenario) {		
+		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout());
 		Hooks.scenario = scenario;
 		LogHelper.info("Starting scenario: " + scenario.getName());
 	}
