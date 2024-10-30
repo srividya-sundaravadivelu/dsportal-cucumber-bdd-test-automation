@@ -6,17 +6,9 @@ import io.cucumber.java.en.When;
 
 public class ArraySteps {
 	
-	@Given("The user is logged in with username {string} and password {string}")
-	public void the_user_is_logged_in_with_username_and_password(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
-	@Given("The user is on the Home page")
-	public void the_user_is_on_the_home_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
 	@When("The user clicks the Array item from the drop down menu")
 	public void the_user_clicks_the_array_item_from_the_drop_down_menu() {
@@ -66,11 +58,7 @@ public class ArraySteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Then("The user should be redirected to the Try Editor page")
-	public void the_user_should_be_redirected_to_the_try_editor_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
 	@When("The user clicks of Arrays Using List link")
 	public void the_user_clicks_of_arrays_using_list_link() {
@@ -126,11 +114,7 @@ public class ArraySteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("The user clicks Practice Questions link")
-	public void the_user_clicks_practice_questions_link() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
 	@Then("The user should be redirected to the Practice Questions page")
 	public void the_user_should_be_redirected_to_the_practice_questions_page() {
@@ -209,8 +193,13 @@ public class ArraySteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("The user write the valid code in Editor of Practice Page Click the Run Button")
+	/*@When("The user write the valid code in Editor of Practice Page Click the Run Button")
 	public void the_user_write_the_valid_code_in_editor_of_practice_page_click_the_run_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}*/
+	@When("The user enter valid python code in tryEditor from sheet {string} and {int} for the question Click the Run Button")
+	public void the_user_enter_valid_python_code_in_try_editor_from_sheet_and_for_the_question_click_the_run_button(String string, Integer int1) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -221,8 +210,13 @@ public class ArraySteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("The user write the valid code in Editor of Practice Page Click the Submit Button")
+	/*@When("The user write the valid code in Editor of Practice Page Click the Submit Button")
 	public void the_user_write_the_valid_code_in_editor_of_practice_page_click_the_submit_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}*/
+	@When("The user enter valid python code in tryEditor from sheet {string} and {int} for the question Clicks on Submit button")
+	public void the_user_enter_valid_python_code_in_try_editor_from_sheet_and_for_the_question_clicks_on_submit_button(String string, Integer int1) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -233,66 +227,7 @@ public class ArraySteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 	
-	@Given("The user is on the Try Editor page")
-	public void the_user_is_on_the_try_editor_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
-	@When("The user enters valid Python code from sheet {string} and row {int} and clicks the Run button")
-	public void the_user_enters_valid_python_code_from_sheet_and_row_and_clicks_the_run_button(String string, Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user is able to see the output inside the console")
-	public void the_user_is_able_to_see_the_output_inside_the_console() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("The user enters invalid Python code from sheet {string} and row {int} and clicks the Run button")
-	public void the_user_enters_invalid_python_code_from_sheet_and_row_and_clicks_the_run_button(String string, Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}	
-
-	@Then("The user sees an error message in the alert window")
-	public void the_user_sees_an_error_message_in_the_alert_window() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("The user clicks the Run Button without entering code in the Editor")
-	public void the_user_clicks_the_run_button_without_entering_code_in_the_editor() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The focus remains in the same page and no error message is displayed")
-	public void the_focus_remains_in_the_same_page_and_no_error_message_is_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("The user is on the Try Editor page with an alert error message")
-	public void the_user_is_on_the_try_editor_page_with_an_alert_error_message() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("The user clicks the OK button in the alert window")
-	public void the_user_clicks_the_ok_button_in_the_alert_window() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user is on the same page having the Editor and Run button")
-	public void the_user_is_on_the_same_page_having_the_editor_and_run_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-
-
+	
 }

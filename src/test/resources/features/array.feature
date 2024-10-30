@@ -65,7 +65,7 @@ Feature:  Testing Array feature in dsportalapp.herokuapp
     #Practice Question Page
     
   Scenario: Redirect to Practice Questions page from Applications of Array page	 
-    Given The user is on the Applications of Array page	 
+    Given The user is on the Arrays in Python page 
     When The user clicks Practice Questions link	
     Then The user should be redirected to the Practice Questions page
     
@@ -93,7 +93,7 @@ Scenario: Redirect to QUESTION page from Squares of a Sorted Array
      
    #Practice Page Editor 
    
- Scenario:Checking functionality by clicking Run Button without entering code in Python Code Editor Practice Page
+ Scenario: Checking functionality by clicking Run Button without entering code in Python Code Editor Practice Page
    Given The user is on the Python Editor of Practice Page
    When The user clicks the Run Button without entering the code in the Editor of Practice Page
    Then Nothing happens to the page and no error message is displayed in Practice Page
@@ -106,7 +106,7 @@ Scenario: Redirect to QUESTION page from Squares of a Sorted Array
       | Sheetname  | RowNumber |
       | pythonCode |         1 |
    
- Scenario Outline:user able to run code in Python Code Editor Page of Practice Page
+ Scenario Outline: user able to run code in Python Code Editor Page of Practice Page
    Given The user is on the Python Editor of Practice Page
    When The user enter valid python code in tryEditor from sheet "<Sheetname>" and <RowNumber> for the question Click the Run Button
    Then The user should able to see output in the console of PracticePage
