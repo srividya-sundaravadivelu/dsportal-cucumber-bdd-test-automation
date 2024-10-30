@@ -2,7 +2,7 @@
 Feature: Testing Registration feature in dsportalapp.herokuapp
  User should be able to launch the application
 
-  @tag1
+  @register
   Scenario: Register Scenario
     Given User open browser with url https://dsportalapp.herokuapp.com
     Then User should see Get Started page
