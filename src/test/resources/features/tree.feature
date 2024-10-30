@@ -216,7 +216,7 @@ Feature: Tree Functionality
 	# Implementation Of BST page		
 	Scenario: Redirect to Practice Questions page from Implementation Of BST page			
 		Given The user is on the Implementation Of BST page	
-		When The user clicks Practice Questions link		
+		When The user clicks Practice Questions link in Implementation Of BST page		
 		Then The user should be redirected to the Practice Questions page in Tree
 
 	Scenario: Redirect to Try Editor page from Implementation Of BST page		

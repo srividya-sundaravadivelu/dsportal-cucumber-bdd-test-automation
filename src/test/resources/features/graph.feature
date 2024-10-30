@@ -40,7 +40,7 @@ Feature: Graph Functionality
   # Graph Representations Page
   Scenario: Redirect to Practice Questions page from Graph Representations page	 
     Given The user is on the Graph Representations page	 
-    When The user clicks Practice Questions link	
+    When The user clicks Practice Questions link in Graph Representations page	
     Then The user should be redirected to the Practice Questions page in Graph
 
   Scenario: Redirect to Python Editor page from Graph Representations page

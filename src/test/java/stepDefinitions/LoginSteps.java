@@ -9,7 +9,7 @@ import utils.ConfigReader;
 
 public class LoginSteps {
 
-	LoginPage loginPage = new LoginPage();;
+	LoginPage loginPage = new LoginPage();
 
 	@Given("The user is logged in with username {string} and password {string}")
 	public void the_user_is_logged_in_with_username_and_password(String username, String password) {		

@@ -214,6 +214,11 @@ public class TreeSteps {
 		treePage.navigateToPage(ConfigReader.getImplementationOfBstUrl());
 	}
 	
+	@When("The user clicks Practice Questions link in Implementation Of BST page")
+	public void the_user_clicks_practice_questions_link() {
+		treePage.clickPracticeQuestionsLink();
+	}
+	
 	@Then("The user should be redirected to the Practice Questions page in Tree")
 	public void the_user_should_be_redirected_to_the_practice_questions_page_in_tree() {
 		Assert.assertEquals(treePage.getCurrentUrl(), ConfigReader.getTreePracticeUrl());
