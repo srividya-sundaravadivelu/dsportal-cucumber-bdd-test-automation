@@ -127,6 +127,69 @@ public class ConfigReader {
     // Try Editor URL
     public static String getTryEditorUrl() {
     	return properties.getProperty("try.editor.url");
-    }    
+    } 
     
+    //Array Page URLs
+    public static String getArrayUrl() {
+		return properties.getProperty("array.url");
+    	
+    }
+    public static String getArraysInPythonUrl() {
+		return properties.getProperty("array.arrays.in.python.url");
+    	
+    }
+    public static String getArraysUsingListUrl() {
+		return properties.getProperty("array.arrays.using.list.url");
+    	
+    }
+    public static String getBasicOperationsInListsUrl() {
+		return properties.getProperty("array.basic.operations.in.list.url");
+    	
+    }
+    public static String getApplicationsOfArrayUrl() {
+		return properties.getProperty("array.applications.of.array.url");
+    	
+    }
+    public static String getArrayPracticeQuestionsUrl() {
+		return properties.getProperty("array.practice.url");
+    	
+    }
+    
+    //Linked List Page URLs
+    public static String getLinkedListUrl() {
+		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/");
+    	
+    }
+    public static String getIntroductionUrl(){
+		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/introduction/");
+    	
+    }
+    public static String getCreatinglinkedListUrl() {
+		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/creating-linked-list/");
+    	
+    }
+    public static String getTypesOfLinkedListUrl() {
+		 return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/types-of-linked-list/");
+    	
+    }
+    public static String getImplementLinkedListInPython() {
+		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/implement-linked-list-in-python/");
+    	
+    }
+    public static String getTraversal()
+    {
+    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/traversal/");
+    }
+    public static String getInsertion() 
+    {
+    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/insertion-in-linked-list/");
+    }
+    public static String getDeletion() 
+    {
+    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/deletion-in-linked-list/");
+    }
+    public static String getLinkedListPracticeQuestionUrl()
+    {
+    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/practice");
+    }
 }
