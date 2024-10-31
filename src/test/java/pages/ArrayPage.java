@@ -41,5 +41,13 @@ public class ArrayPage extends BasePage {
 		applicationsOfarray.click();
 		
 	}
+	public void clickTryHereButton() {
+		WebDriverWaitUtility.waitForElementToBeClickable(tryEditorLink);
+		tryEditorLink.click();
+	}
+	public void clickPracticeQuestionslink() {
+		WebDriverWaitUtility.waitForElementToBeClickable(arrayPracticeQns);
+		arrayPracticeQns.click();
+	}
 
 }
