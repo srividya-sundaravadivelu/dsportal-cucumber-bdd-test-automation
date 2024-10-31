@@ -21,7 +21,7 @@ public class HomeSteps {
 	@When("The user clicks the {string} item from the drop down menu")
 	public void the_user_clicks_the_item_from_the_drop_down_menu(String itemName) {
 		homePage.clickDropDownItem(itemName);
-	}
+}
 
 	@When("The user clicks the Get Started button in {string} Panel")
 	public void the_user_clicks_the_get_started_button_in_panel(String itemName) {
@@ -40,6 +40,11 @@ public class HomeSteps {
 			return ConfigReader.getGraphHomeUrl();
 		case "tree":
 			return ConfigReader.getTreeUrl();
+		case "array":
+			return ConfigReader.getArrayUrl();
+		case "linkedlist":
+			return ConfigReader.getLinkedListUrl();
+		
 		default:
 			throw new IllegalArgumentException("Unknown page: " + pageName);
 		}

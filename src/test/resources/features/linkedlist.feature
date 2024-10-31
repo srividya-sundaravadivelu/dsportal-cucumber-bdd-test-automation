@@ -7,13 +7,13 @@ Feature:  Testing Linked List feature in dsportalapp.herokuapp
     @tag1
   Scenario: Redirect to Linked List page from Home page drop down menu 
     Given The user is on the Home page
-    When The user clicks the Linked List item from the drop down menu
-    Then The user should be redirected to Linked List page
+    When The user clicks the "Linked List" item from the drop down menu
+    Then The user should be redirected to "Linked List" page
    
    Scenario: Redirect to Linked List page from Get Started button in Linked List Panel 
 		Given The user is on the Home page	
-		When The user clicks the Get Started button in Linked List Panel
-		Then The user should be redirected to the Linked List page 
+		When The user clicks the Get Started button in "Linked List" Panel
+		Then The user should be redirected to the "Linked List" page 
 		
 		#Introduction
 		Scenario: Redirect to Introduction Page from Linked List Page

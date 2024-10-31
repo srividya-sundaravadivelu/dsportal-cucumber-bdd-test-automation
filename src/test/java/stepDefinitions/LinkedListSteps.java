@@ -6,29 +6,7 @@ import io.cucumber.java.en.When;
 
 public class LinkedListSteps {
 	
-	@When("The user clicks the Linked List item from the drop down menu")
-	public void the_user_clicks_the_linked_list_item_from_the_drop_down_menu() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user should be redirected to Linked List page")
-	public void the_user_should_be_redirected_to_linked_list_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("The user clicks the Get Started button in Linked List Panel")
-	public void the_user_clicks_the_get_started_button_in_linked_list_panel() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user should be redirected to the Linked List page")
-	public void the_user_should_be_redirected_to_the_linked_list_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+	
 
 	@Given("The user is on the Linked List page")
 	public void the_user_is_on_the_linked_list_page() {
