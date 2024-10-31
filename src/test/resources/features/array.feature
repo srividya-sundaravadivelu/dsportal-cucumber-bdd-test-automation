@@ -8,13 +8,13 @@ Feature:  Testing Array feature in dsportalapp.herokuapp
   @tag1
   Scenario: Redirect to Array page from Home page drop down menu 
     Given The user is on the Home page
-    When The user clicks the Array item from the drop down menu
-    Then The user should be redirected to Array page
+    When The user clicks the "Arrays" item from the drop down menu
+    Then The user should be redirected to "Array" page
    
    Scenario: Redirect to Array page from Home page Get Started button in Array Panel 
 		Given The user is on the Home page	
-		When The user clicks the Get Started button in Array Panel
-		Then The user should be redirected to the Array page 
+		When The user clicks the Get Started button in "Array" Panel
+		Then The user should be redirected to the "Array" page 
 		
 		# Arrays in Python 
   Scenario: Redirect to Overview of Arrays in Python page from Array page

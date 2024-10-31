@@ -5,35 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ArraySteps {
-	
-	
-
-	
-
-	@When("The user clicks the Array item from the drop down menu")
-	public void the_user_clicks_the_array_item_from_the_drop_down_menu() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user should be redirected to Array page")
-	public void the_user_should_be_redirected_to_array_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("The user clicks the Get Started button in Array Panel")
-	public void the_user_clicks_the_get_started_button_in_array_panel() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("The user should be redirected to the Array page")
-	public void the_user_should_be_redirected_to_the_array_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
+		
 	@When("The user clicks Arrays in Python link")
 	public void the_user_clicks_arrays_in_python_link() {
 	    // Write code here that turns the phrase above into concrete actions
