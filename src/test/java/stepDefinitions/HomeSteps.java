@@ -42,8 +42,12 @@ public class HomeSteps {
 			return ConfigReader.getTreeUrl();
 		case "array":
 			return ConfigReader.getArrayUrl();
-		case "linkedlist":
+		case "linked list":
 			return ConfigReader.getLinkedListUrl();
+		case "stack":
+			return ConfigReader.getStackUrl();
+		case "queue":
+			return ConfigReader.getQueueUrl();
 		
 		default:
 			throw new IllegalArgumentException("Unknown page: " + pageName);
