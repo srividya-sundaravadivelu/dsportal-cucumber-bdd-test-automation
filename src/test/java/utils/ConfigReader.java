@@ -200,4 +200,8 @@ public class ConfigReader {
     {
     	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/practice");
     }
+    
+    public static String getExcelFilePath() {
+    	return properties.getProperty("excel.file.path");
+    }
 }
