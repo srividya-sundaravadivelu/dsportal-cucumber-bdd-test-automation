@@ -128,7 +128,15 @@ public class ConfigReader {
     public static String getTryEditorUrl() {
     	return properties.getProperty("try.editor.url");
     } 
+    //Stack Page URLs
+    public static String getStackUrl() {
+    	return properties.getProperty("stack.url");
+    }
     
+    //Queue Page URLs
+    public static String getQueueUrl() {
+    	return properties.getProperty("queue.url");
+    }
     //Array Page URLs
     public static String getArrayUrl() {
 		return properties.getProperty("array.url");
