@@ -60,7 +60,7 @@ public class GraphSteps {
 		graphPage.navigateToPage(ConfigReader.getGraphRepresentationsUrl());
 	}
 
-	@When("The user clicks Practice Questions link in Graph Representations page")
+	@When("The user clicks Practice Questions link")
 	public void the_user_clicks_practice_questions_link() {
 		graphPage.clickPracticeLink();
 	}
