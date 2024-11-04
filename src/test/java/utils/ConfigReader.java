@@ -128,7 +128,15 @@ public class ConfigReader {
     public static String getTryEditorUrl() {
     	return properties.getProperty("try.editor.url");
     } 
+    //Stack Page URLs
+    public static String getStackUrl() {
+    	return properties.getProperty("stack.url");
+    }
     
+    //Queue Page URLs
+    public static String getQueueUrl() {
+    	return properties.getProperty("queue.url");
+    }
     //Array Page URLs
     public static String getArrayUrl() {
 		return properties.getProperty("array.url");
@@ -191,5 +199,9 @@ public class ConfigReader {
     public static String getLinkedListPracticeQuestionUrl()
     {
     	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/practice");
+    }
+    
+    public static String getExcelFilePath() {
+    	return properties.getProperty("excel.file.path");
     }
 }
