@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,6 +24,35 @@ public class ArrayPage extends BasePage {
 	
 	@FindBy(xpath = "//a[@href='/tryEditor']")
 	private WebElement tryEditorLink;
+
+	@FindBy(xpath = "//a[@href='/question/1']")
+	WebElement searchTheArray;
+
+	@FindBy(xpath = "//a[@href='/question/2']")
+	WebElement maxCnscutivones;
+
+	@FindBy(xpath = "//a[@href='/question/3']")
+	WebElement fndNumbrsWithEvnNoOfDgts;
+
+	@FindBy(xpath = "//a[@href='/question/4']")
+	WebElement SqrsOfASrtdArray;
+
+	@FindBy(xpath = "//*[@id='answer_form']/button")
+	WebElement runButton;
+
+	@FindBy(xpath = "//*[@class='button']")
+	WebElement submitBtn;
+
+	@FindBy(xpath = "//*[@class='CodeMirror-scroll']")
+	WebElement codeEditor;
+
+	@FindBy(id = "output")
+	
+	WebElement output;public void clickLinkUnderTopicsCovered(String itemName) {
+		WebElement item = driver
+				.findElement(By.xpath("//a[contains(@class,'list-group-item') and text()='" + itemName + "']"));
+		WebDriverWaitUtility.waitForElementToBeClickable(item).click();
+	}
 	
 	public void clickArraysInPythonlink() {
 		WebDriverWaitUtility.waitForElementToBeClickable(arraysInPythonLink);
@@ -49,5 +79,25 @@ public class ArrayPage extends BasePage {
 		WebDriverWaitUtility.waitForElementToBeClickable(arrayPracticeQns);
 		arrayPracticeQns.click();
 	}
+	public void clickSearchTheArray() {
+		WebDriverWaitUtility.waitForElementToBeClickable(searchTheArray);
+		searchTheArray.click();
+	}
+
+	public void clickMaxCnsecutiveOnes() {
+		WebDriverWaitUtility.waitForElementToBeClickable(maxCnscutivones);
+		maxCnscutivones.click();
+	}
+
+	public void clickFndNumswithEvnNumOfDigts() {
+		WebDriverWaitUtility.waitForElementToBeClickable(fndNumbrsWithEvnNoOfDgts);
+		fndNumbrsWithEvnNoOfDgts.click();
+	}
+
+	public void clickSqrsOfASortdArray() {
+		WebDriverWaitUtility.waitForElementToBeClickable(SqrsOfASrtdArray);
+		SqrsOfASrtdArray.click();
+	}
+
 
 }

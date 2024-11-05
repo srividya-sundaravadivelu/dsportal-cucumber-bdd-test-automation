@@ -165,40 +165,40 @@ public class ConfigReader {
     
     //Linked List Page URLs
     public static String getLinkedListUrl() {
-		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/");
+		return properties.getProperty("linkedlist.url");
     	
     }
     public static String getIntroductionUrl(){
-		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/introduction/");
+		return properties.getProperty("linkedlist.introduction.url");
     	
     }
     public static String getCreatinglinkedListUrl() {
-		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/creating-linked-list/");
+		return properties.getProperty("linkedlist.creating.linked.list.url");
     	
     }
     public static String getTypesOfLinkedListUrl() {
-		 return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/types-of-linked-list/");
+		 return properties.getProperty("linkedlist.types.of.linked.list.url");
     	
     }
     public static String getImplementLinkedListInPython() {
-		return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/implement-linked-list-in-python/");
+		return properties.getProperty("linkedlist.implement.linked.list.in.python");
     	
     }
     public static String getTraversal()
     {
-    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/traversal/");
+    	return properties.getProperty("linkedlist.traversal.url");
     }
     public static String getInsertion() 
     {
-    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/insertion-in-linked-list/");
+    	return properties.getProperty("linkedlist.insertion.url");
     }
     public static String getDeletion() 
     {
-    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/deletion-in-linked-list/");
+    	return properties.getProperty("linkedlist.deletion.url");
     }
     public static String getLinkedListPracticeQuestionUrl()
     {
-    	return properties.getProperty("https://dsportalapp.herokuapp.com/linked-list/practice");
+    	return properties.getProperty("linkedlist.practice.questions.url");
     }
     
     public static String getExcelFilePath() {
