@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utils.ConfigReader;
 import utils.WebDriverWaitUtility;
 
 public class LinkedListPage extends BasePage {
@@ -84,9 +85,20 @@ public class LinkedListPage extends BasePage {
 		String title = driver.getTitle();
 		return title;
 	}
-	public void tryHereLink(String btnName, String dsName) {
+	public String getLinkedListPracticeQuestionUrl() {
+		String title = driver.getTitle();
+		return title;
+		
+	}
+	
+	public void clickTryHereLink(String btnName, String dsName) {
 		
 		tryHereLink.click();
+	}
+	public void getNavigateToPage(String pageName) {
+		String pageLink = "linkedlist." + pageName.replaceAll("\s", ".")+".url";		
+		String url=ConfigReader.getLink(pageLink.toLowerCase());
+		driver.get(url);
 	}
 
 }

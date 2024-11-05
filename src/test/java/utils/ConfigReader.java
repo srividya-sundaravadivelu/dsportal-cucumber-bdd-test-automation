@@ -165,7 +165,7 @@ public class ConfigReader {
     
     //Linked List Page URLs
     public static String getLinkedListUrl() {
-		return properties.getProperty("linkedlist.url");
+		return properties.getProperty("linkedlist.linked.list.url");
     	
     }
     public static String getIntroductionUrl(){
@@ -203,5 +203,9 @@ public class ConfigReader {
     
     public static String getExcelFilePath() {
     	return properties.getProperty("excel.file.path");
+    }
+    public static String getLink(String key) {    	
+    	return properties.getProperty(key);
+    	
     }
 }
