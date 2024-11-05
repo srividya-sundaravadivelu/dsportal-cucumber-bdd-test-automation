@@ -204,4 +204,16 @@ public class ConfigReader {
     public static String getExcelFilePath() {
     	return properties.getProperty("excel.file.path");
     }
+    
+    public static String getDataStructuresIntroductionUrl() {
+    	return properties.getProperty("data.structures.introduction.url");
+    }
+    
+    public static String getDataStructuresTimeComplexityUrl() {
+    	return properties.getProperty("data.structures.time.complexity.url");
+    }
+    
+    public static String getDataStructuresPracticeUrl() {
+    	return properties.getProperty("data.structures.practice.url");
+    }
 }

@@ -47,8 +47,9 @@ public class HomeSteps {
 		case "stack":
 			return ConfigReader.getStackUrl();
 		case "queue":
-			return ConfigReader.getQueueUrl();
-		
+			return ConfigReader.getQueueUrl();			
+		case "data-structures-introduction":
+			return ConfigReader.getDataStructuresIntroductionUrl();
 		default:
 			throw new IllegalArgumentException("Unknown page: " + pageName);
 		}
