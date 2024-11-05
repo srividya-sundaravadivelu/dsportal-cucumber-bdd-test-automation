@@ -46,6 +46,10 @@ public class ConfigReader {
     	return properties.getProperty("home.url");
     }
     
+//  Anjali- Register page URLs
+    public static String getRegisterUrl() {
+    	return properties.getProperty("register.url");
+    }
     // Tree Page URLs
     public static String getTreeUrl() {
     	return properties.getProperty("tree.url");

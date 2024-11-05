@@ -13,7 +13,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, // For reporting
 		monochrome = true // For better console output
-		,tags="@data-structures-introduction or @graph or @tree"
+		,tags="@home"
 )
 public class TestRunner extends AbstractTestNGCucumberTests
 {
