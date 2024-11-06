@@ -6,11 +6,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import driver.DriverManager;
-import io.cucumber.java.AfterAll;
+import driver.TestContext;
+import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
 import utils.ConfigReader;
@@ -18,23 +17,23 @@ import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class Hooks {
-	private static WebDriver driver;
-	private static DriverManager driverManager;
+	TestContext testContext;
+	static WebDriver driver;
 	static Scenario scenario;
-
-	@BeforeAll
-	public static void initializeDriver() throws Throwable {
-		LogHelper.info("Initializing WebDriver...");
-		driverManager = new DriverManager();
-		driver = driverManager.SetupDriver();
-		LogHelper.info("WebDriver initialized successfully.");
+	
+	public Hooks(TestContext testContext) {
+		this.testContext = testContext;
 	}
 
 	@Before
-	public void scenario(Scenario scenario) {		
-		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout());
+	public void setUp(Scenario scenario) {
+		LogHelper.info("Initializing WebDriver...");
+		testContext.setDriver(driver);
+		driver = testContext.getdriver();
+		testContext.initializePageObjects(driver);
+		LogHelper.info("WebDriver initialized successfully.");
 		Hooks.scenario = scenario;
-		LogHelper.info("Starting scenario: " + scenario.getName());
+		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout()); //-- TODO
 	}
 
 	@AfterStep
@@ -53,13 +52,11 @@ public class Hooks {
 		}
 	}
 
-	@AfterAll
-	public static void tearDownDriver() {
+	@After
+	public void tearDown(Scenario scenario) {
 
 		LogHelper.info("Tearing down WebDriver...");
-		if (driverManager != null) {
-			driverManager.tearDown();
-			LogHelper.info("WebDriver torn down successfully.");
-		}
+		driver.quit();
+		LogHelper.info("Tear down WebDriver Successful");
 	}
 }

@@ -5,6 +5,7 @@ Feature: Graph Functionality
     Given The user is logged in with username "numpy@gmail.com" and password "Tester123$"
     
   # Home Page  
+  @graph1
   Scenario: Redirect to Graph page from Home page drop down menu 
   	Given The user is on the Home page
   	When The user clicks the "Graph" item from the drop down menu

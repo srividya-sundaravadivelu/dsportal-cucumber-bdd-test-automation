@@ -1,12 +1,17 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import utils.WebDriverWaitUtility;
 
 public class GraphPage extends BasePage {
+
+	public GraphPage(WebDriver driver) {
+		super(driver);
+	}
 
 	@FindBy(xpath = "//li//a[text()='Graph Representations']")
 	private WebElement graphRepresentationsLink;

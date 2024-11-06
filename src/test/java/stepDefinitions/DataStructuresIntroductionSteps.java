@@ -1,7 +1,9 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,7 +12,18 @@ import utils.ConfigReader;
 
 public class DataStructuresIntroductionSteps {
 	
-	DataStructuresIntroductionPage dataStructuresPage = new DataStructuresIntroductionPage();
+	TestContext testContext;
+	WebDriver driver;
+
+	DataStructuresIntroductionPage dataStructuresPage;
+	
+	public DataStructuresIntroductionSteps(TestContext testContext) {
+		this.testContext = testContext;
+		this.driver = testContext.getdriver();
+		this.dataStructuresPage = testContext.getDataStructuresIntroductionPage();
+	}
+	
+	
 	
 	@Given("The user is on the Data Structures Introduction page")
 	public void the_user_is_on_the_data_structures_introduction_page() {

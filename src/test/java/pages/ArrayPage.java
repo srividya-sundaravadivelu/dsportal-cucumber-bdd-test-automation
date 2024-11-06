@@ -1,11 +1,17 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import utils.WebDriverWaitUtility;
 
 public class ArrayPage extends BasePage {
+	
+	public ArrayPage(WebDriver driver) {
+		super(driver);
+	}
+	
 	@FindBy(xpath=" //ul//a[@href='arrays-in-python']")
 	WebElement arraysInPythonLink;
 	

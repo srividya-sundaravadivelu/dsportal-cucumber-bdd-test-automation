@@ -1,7 +1,9 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,8 +11,17 @@ import pages.GraphPage;
 import utils.ConfigReader;
 
 public class GraphSteps {
+	
+	TestContext testContext;
+	WebDriver driver;
 
-	GraphPage graphPage = new GraphPage();
+	GraphPage graphPage;
+	
+	public GraphSteps(TestContext testContext) {
+		this.testContext = testContext;
+		this.driver = testContext.getdriver();
+		this.graphPage = testContext.getGraphPage();
+	}
 
 	// Graph Home Page
 	@Given("The user is on the Graph Home page")

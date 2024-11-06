@@ -1,17 +1,27 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.GraphPage;
 import pages.TreePage;
 import utils.ConfigReader;
 
 public class TreeSteps {
 	
-	TreePage treePage = new TreePage();
+	TestContext testContext;
+	WebDriver driver;
+
+	TreePage treePage;
+	
+	public TreeSteps(TestContext testContext) {
+		this.testContext = testContext;
+		this.driver = testContext.getdriver();
+		this.treePage = testContext.getTreePage();
+	}
 	
 	// Tree Page
 	@Given("The user is on the Tree page")
