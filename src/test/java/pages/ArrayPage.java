@@ -1,9 +1,15 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import utils.ConfigReader;
+import utils.ExcelReader;
 import utils.WebDriverWaitUtility;
 
 public class ArrayPage extends BasePage {
@@ -43,7 +49,7 @@ public class ArrayPage extends BasePage {
 	@FindBy(xpath = "//*[@class='button']")
 	WebElement submitBtn;
 
-	@FindBy(xpath = "//*[@class='CodeMirror-scroll']")
+	@FindBy(xpath = "//textarea[@tabindex='0']")
 	WebElement codeEditor;
 
 	@FindBy(id = "output")
@@ -98,6 +104,81 @@ public class ArrayPage extends BasePage {
 		WebDriverWaitUtility.waitForElementToBeClickable(SqrsOfASrtdArray);
 		SqrsOfASrtdArray.click();
 	}
+	public void clickQuestionLinkByTitle(String questionTitle) {
+		// Use XPath to locate the link based on the question title text
+		String xpathExpression = String.format("//a[contains(text(), '%s')]", questionTitle);
+		WebElement questionLink = driver.findElement(By.xpath(xpathExpression));
+		questionLink.click();
 
+	}
+	public String getArrayPageTitle() {
+		String title = driver.getTitle();
+		return title;
+	}
+	
+
+	public void getPracticeQuestionLinksOfArray(String pageName) {
+		String pageLink = "array." + pageName.replaceAll("\s", ".")+".url";
+		String url=ConfigReader.getLink(pageLink.toLowerCase());
+		driver.get(url);
+	}
+	
+	
+	
+
+	public void enterPythonCode(String sheetName, String questionTitle) throws IOException {
+		ExcelReader excelReader = new ExcelReader(ConfigReader.getExcelFilePath());
+		String code = excelReader.getCellDataByTitle(sheetName, questionTitle, "pythonCode");
+		enterCodeInEditor(code);
+	}
+	public void clickRunBtn() {
+		WebDriverWaitUtility.waitForElementToBeClickable(runButton);
+		runButton.click();
+
+	}
+
+	public void clickSubmitBtn() {
+		WebDriverWaitUtility.waitForElementToBeClickable(submitBtn);
+		submitBtn.click();
+
+	}
+	public String getErrorText() {
+		String errorMsg = driver.switchTo().alert().getText();
+		driver.switchTo().alert().accept();
+		return errorMsg;
+
+	}
+	public void enterCodeInEditor(String code) {
+		// Clear the existing content in the editor
+		new Actions(driver)
+		    .keyDown(Keys.CONTROL)
+		    .sendKeys("a")
+		    .keyUp(Keys.CONTROL)
+		    .sendKeys(Keys.DELETE)
+		    .perform();
+		
+		String[] str1 = code.split("\n");
+		for (int i = 0; i < str1.length; i++) {
+			if (str1[i].equalsIgnoreCase("\\b")) {
+				codeEditor.sendKeys(Keys.BACK_SPACE);
+			} else {
+				codeEditor.sendKeys(str1[i]);
+				codeEditor.sendKeys(Keys.RETURN);
+			}
+		}
+	}
+
+	
+	public String getExpectedResult(String sheetName,String questionTitle) throws IOException {
+		ExcelReader excelReader = new ExcelReader(ConfigReader.getExcelFilePath());
+		String Result = excelReader.getCellDataByTitle(sheetName, questionTitle, "Result");
+		return Result;
+		
+	}
+	public String getActualResult() {
+		WebDriverWaitUtility.waitForElementToBeVisible(output);
+		return output.getText();
+
+	}
 
 }

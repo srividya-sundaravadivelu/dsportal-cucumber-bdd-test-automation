@@ -101,4 +101,57 @@ Feature:  Testing Array feature in dsportalapp.herokuapp
     When The user clicks Practice Questions link of Array Page
     Then The user should be redirected to Array practice Questions page 
   
- 
+ 		#Practice Questions
+ 		@TC_A14   
+    Scenario Outline: Validate question link navigation
+    Given The user is on the Array practice Questions page
+    When The user clicks on the link for question "<questionTitle>"
+    Then The user should be redirected to the expected "<questionTitle>" page
+    Examples:
+      | questionTitle             						 		|
+      | Search the array  									   		|
+      | Max Consecutive Ones 									 		|
+      | Find Numbers with Even Number of Digits		|
+      | Squares of  a Sorted Array							 	|
+      
+    #Practice Page Editor 
+    @TC_A15
+    Scenario Outline: The user is able to run code in tryEditor for Search the array link
+    Given The user is on Question page of "<questionTitle>" after logged in
+    When The user enter valid python code in tryEditor from sheet "validPythonCode" and "<questionTitle>" for the question
+    And The user clicks on run button
+    Then The user should be presented with Run result     
+     Examples:
+      | questionTitle             						   |
+      | Search the array  									     |
+      | Max Consecutive Ones 									   |
+      | Find Numbers with Even Number of Digits  |
+      | Squares of a Sorted Array							   |
+    @TC_A16
+    Scenario Outline: The user is able to run code in tryEditor for Search the array link
+    Given The user is on Question page of "<questionTitle>" after logged in
+    When The user enter valid python code in tryEditor from sheet "submitPythonCode" and "<questionTitle>" for the question
+    And The user clicks on submit button
+    Then The user should be presented with successful submission message     
+     Examples:
+      | questionTitle             						   |
+      | Search the array  									     |
+      | Max Consecutive Ones 									   |
+      | Find Numbers with Even Number of Digits  |
+      | Squares of a Sorted Array							   |
+    @TC_A17
+    Scenario Outline: The user is able to run code in tryEditor for Search the array link
+    Given The user is on Question page of "<questionTitle>" after logged in
+    When The user enter  python code with invalid syntax in tryEditor from sheet "invalidPythonCode" and "<questionTitle>" for the question
+    And The user clicks on run button
+    Then The user should be presented with error message as "SyntaxError: bad input on line 1"     
+     Examples:
+      | questionTitle             						   |
+      | Search the array  									     |
+      | Max Consecutive Ones 									   |
+      | Find Numbers with Even Number of Digits  |
+      | Squares of a Sorted Array							   |
+     
+      
+      
+ 		

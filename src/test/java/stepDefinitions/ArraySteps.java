@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
@@ -10,7 +12,7 @@ import utils.ConfigReader;
 import utils.LogHelper;
 
 public class ArraySteps {
-		
+
 	ArrayPage arrayPage = new ArrayPage();
 	String expectedMsg = "";
 
@@ -65,10 +67,11 @@ public class ArraySteps {
 	public void the_user_clicks_button_on_page(String string, String string2) {
 		arrayPage.clickTryHereButton();
 	}
+
 	@Then("The user should be redirected to the Try Editor page from Array page")
 	public void the_user_should_be_redirected_to_the_try_editor_page_from_array_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
+		// Write code here that turns the phrase above into concrete actions
+		// throw new io.cucumber.java.PendingException();
 		Assert.assertEquals(arrayPage.getCurrentUrl(), ConfigReader.getTryEditorUrl());
 	}
 
@@ -112,17 +115,86 @@ public class ArraySteps {
 	@Given("The user is on the Arrays in Python page after logged in")
 	public void the_user_is_on_the_arrays_in_python_page_after_logged_in() {
 		arrayPage.navigateToPage(ConfigReader.getArraysInPythonUrl());
-	    
+
 	}
+
 	@When("The user clicks Practice Questions link of Array Page")
 	public void the_user_clicks_practice_questions_link_of_array_page() {
-	    arrayPage.clickPracticeQuestionslink();
+		arrayPage.clickPracticeQuestionslink();
 	}
 
 	@Then("The user should be redirected to Array practice Questions page")
 	public void the_user_should_be_redirected_to_array_practice_questions_page() {
-	    Assert.assertEquals(arrayPage.getCurrentUrl(), ConfigReader.getArrayPracticeQuestionsUrl());
+		Assert.assertEquals(arrayPage.getCurrentUrl(), ConfigReader.getArrayPracticeQuestionsUrl());
 	}
-
 	
+	// @TC_A14
+		@Given("The user is on the Array practice Questions page")
+		public void the_user_is_on_the_array_practice_questions_page() {
+			arrayPage.navigateToPage(ConfigReader.getArrayPracticeQuestionsUrl());
+		}
+
+		@When("The user clicks on the link for question {string}")
+		public void the_user_clicks_on_the_link_for_question(String questionTitle) {
+			arrayPage.clickQuestionLinkByTitle(questionTitle);
+		}
+
+		@Then("The user should be redirected to the expected {string} page")
+		public void the_user_should_be_redirected_to_the_expected_page(String string) {
+			Assert.assertEquals(arrayPage.getArrayPageTitle(), "Assessment", "Title do not match");
+		}
+		
+		//TC_A15
+		@Given("The user is on Question page of {string} after logged in")
+		public void the_user_is_on_question_page_of_after_logged_in(String questionTitle) {
+			arrayPage.getPracticeQuestionLinksOfArray(questionTitle);;
+		    
+		}
+
+		@When("The user enter valid python code in tryEditor from sheet {string} and {string} for the question")
+		public void the_user_enter_valid_python_code_in_try_editor_from_sheet_and_for_the_question(String sheetName, String questionTitle) throws IOException {
+		    arrayPage.enterPythonCode(sheetName, questionTitle);
+		    expectedMsg= arrayPage.getExpectedResult(sheetName, questionTitle);
+		     
+		}
+
+		@When("The user clicks on run button")
+		public void the_user_clicks_on_run_button() {
+		   arrayPage.clickRunBtn();
+		}
+
+		@Then("The user should be presented with Run result")
+		public void the_user_should_be_presented_with_run_result() {
+			String actualResult=arrayPage.getActualResult();
+			Assert.assertEquals(expectedMsg, actualResult,"Result do not match");
+		}
+		//TC_16
+		@When("The user clicks on submit button")
+		public void the_user_clicks_on_submit_button() {
+			arrayPage.clickSubmitBtn();
+		   
+		}
+
+		@Then("The user should be presented with successful submission message")
+		public void the_user_should_be_presented_with_successful_submission_message() {
+			String actualResult=arrayPage.getActualResult();
+			Assert.assertEquals(actualResult,expectedMsg,"Result do not match");
+				
+		}
+		//@TC_A17
+		@When("The user enter  python code with invalid syntax in tryEditor from sheet {string} and {string} for the question")
+		public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and_for_the_question(String sheetName, String questionTitle) throws IOException {
+			arrayPage.enterPythonCode(sheetName, questionTitle);
+		    expectedMsg= arrayPage.getExpectedResult(sheetName, questionTitle);  
+		}
+
+		@Then("The user should be presented with error message as {string}")
+		public void the_user_should_be_presented_with_error_message_as(String string) {
+			String actualMsg = arrayPage.getErrorText();
+			Assert.assertEquals(actualMsg, expectedMsg,"Result do not match");
+		   
+		}
+
+
+
 }
