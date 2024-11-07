@@ -79,6 +79,7 @@ public class TestContext {
 		this.registerPage = new RegisterPage(threadLocalDriver);
 		this.treePage = new TreePage(threadLocalDriver);
 		this.tryEditorPage = new TryEditorPage(threadLocalDriver);
+		this.linkedListPage = new LinkedListPage(threadLocalDriver);
 	}
 
 	public GraphPage getGraphPage() {
@@ -107,6 +108,14 @@ public class TestContext {
 
 	public RegisterPage getRegisterPage() {
 		return registerPage;
+	}
+	
+	public ArrayPage getArrayPage() {
+		return arrayPage;
+	}
+	
+	public LinkedListPage getLinkedListPage() {
+		return linkedListPage;
 	}
 
 }

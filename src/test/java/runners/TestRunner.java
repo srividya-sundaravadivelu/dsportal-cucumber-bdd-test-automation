@@ -16,16 +16,16 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 		plugin = { "pretty", "html:target/cucumber-reports.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
 		monochrome = true // For better console output
-		, tags = "@data-structures-introduction and not @try-editor")
+		, tags = "@graph or @tree or @data-structures-introduction")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
-
-	@Override
-	@DataProvider(parallel = true)
-	public Object[][] scenarios() {
-		return super.scenarios();
-	}
+//	Important! Uncomment below for CrossBrowser & Parallel Testing
+//	@Override
+//	@DataProvider(parallel = true)
+//	public Object[][] scenarios() {
+//		return super.scenarios();
+//	}
 
 	@BeforeClass
 	@Parameters({ "browser" })
