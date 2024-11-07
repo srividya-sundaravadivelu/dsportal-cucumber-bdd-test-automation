@@ -11,6 +11,7 @@ Feature: Graph Functionality
   	When The user clicks the "Graph" item from the drop down menu
   	Then The user should be redirected to the "Graph Home" page
 
+  @graph2
 	Scenario: Redirect to Graph page from Home page Get Started button in Graph Panel 
 		Given The user is on the Home page	
 		When The user clicks the Get Started button in "Graph" Panel

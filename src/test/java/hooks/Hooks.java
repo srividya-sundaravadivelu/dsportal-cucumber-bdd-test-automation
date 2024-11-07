@@ -1,11 +1,9 @@
 package hooks;
 
 import java.io.ByteArrayInputStream;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
 import driver.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
@@ -17,10 +15,8 @@ import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class Hooks {
-	TestContext testContext;
-	static WebDriver driver;
-	static Scenario scenario;
-	
+	private TestContext testContext;
+
 	public Hooks(TestContext testContext) {
 		this.testContext = testContext;
 	}
@@ -28,12 +24,14 @@ public class Hooks {
 	@Before
 	public void setUp(Scenario scenario) {
 		LogHelper.info("Initializing WebDriver...");
-		testContext.setDriver(driver);
-		driver = testContext.getdriver();
-		testContext.initializePageObjects(driver);
-		LogHelper.info("WebDriver initialized successfully.");
-		Hooks.scenario = scenario;
-		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout()); //-- TODO
+		String browser = ConfigReader.getBrowser();
+		LogHelper.info("broswer value from Config Reader: "+browser);
+		testContext.setDriver(browser);
+		WebDriver driver = testContext.getdriver();
+		testContext.initializePageObjects();
+		LogHelper.info("WebDriver initialized successfully for: " + scenario.getName());
+		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout());
+		LogHelper.info("Test started on Thread: " + Thread.currentThread().getId());
 	}
 
 	@AfterStep
@@ -41,7 +39,7 @@ public class Hooks {
 		if (scenario.isFailed()) {
 			LogHelper.error("Scenario failed: " + scenario.getName());
 			try {
-				byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+				byte[] screenshotBytes = ((TakesScreenshot) testContext.getdriver()).getScreenshotAs(OutputType.BYTES);
 				scenario.attach(screenshotBytes, "image/png", "Captured Screenshot");
 				ByteArrayInputStream screenshotStream = new ByteArrayInputStream(screenshotBytes);
 				Allure.addAttachment("Failure Screenshot", screenshotStream);
@@ -53,10 +51,9 @@ public class Hooks {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
-
+	public void tearDown() {
 		LogHelper.info("Tearing down WebDriver...");
-		driver.quit();
-		LogHelper.info("Tear down WebDriver Successful");
+		testContext.quitDriver();
+		LogHelper.info("Tear down WebDriver successful");
 	}
 }
