@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="CrossBrowserSuite" parallel="tests" thread-count="2">
+<suite name="CrossBrowserSuite" parallel="tests" thread-count="3">
+	<!-- Test for Chrome -->
+	<test name="ChromeTest">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="runners.TestRunner" />
+		</classes>
+	</test>
+
 	<!-- Test for Edge -->
 	<test name="EdgeTest">
 		<parameter name="browser" value="edge" />
@@ -9,9 +17,9 @@
 		</classes>
 	</test>
 
-	<!-- Test for Chrome -->
-	<test name="ChromeTest">
-		<parameter name="browser" value="chrome" />
+	<!-- Test for FireFox -->
+	<test name="FireFoxTest">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="runners.TestRunner" />
 		</classes>

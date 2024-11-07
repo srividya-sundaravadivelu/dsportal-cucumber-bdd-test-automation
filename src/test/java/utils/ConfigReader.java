@@ -7,8 +7,8 @@ import java.util.Properties;
 public class ConfigReader {
 
     private static Properties properties = new Properties();
-    private static ThreadLocal<String> browser = ThreadLocal.withInitial(() -> "chrome");  // Default to Chrome if not set
-
+//    private static ThreadLocal<String> browser = ThreadLocal.withInitial(() -> "chrome");  // Default to Chrome if not set    
+    
     static {
         try (InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream("config/config.properties")) {
             if (input == null) {
@@ -22,11 +22,11 @@ public class ConfigReader {
 
     
     public static void setBrowser(String browserName) {
-        browser.set(browserName);
+    	properties.setProperty("browser",browserName);
     }
 
     public static String getBrowser() {
-        return browser.get();
+        return properties.getProperty("browser");
     }
     
     public static String getBaseUrl() {

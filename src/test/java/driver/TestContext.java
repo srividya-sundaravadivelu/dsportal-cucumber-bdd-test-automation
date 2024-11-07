@@ -25,7 +25,6 @@ public class TestContext {
 	public TryEditorPage tryEditorPage;
 
 	public void setDriver(String browser) {
-//		String browser = ConfigReader.getBrowser();
 		LogHelper.info("Browser value inside SetDriver method in TestContext:"+browser);
 		long pageLoadTimeout = Long.parseLong(ConfigReader.getPageLoadTimeout());
 		WebDriver driver;
@@ -39,6 +38,7 @@ public class TestContext {
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
+			LogHelper.info("Firefox Driver is created");
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();
@@ -48,14 +48,16 @@ public class TestContext {
 		case "safari":
 			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
+			LogHelper.info("Safari Driver is created");
 			break;
 		default:
 			throw new RuntimeException("Browser not supported: " + browser);
 		}
-
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
-		driver.manage().window().maximize();
+		
 		threadLocalDriver.set(driver);
+		getdriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+		getdriver().manage().window().maximize();
+		
 	}
 
 	public WebDriver getdriver() {
@@ -68,15 +70,15 @@ public class TestContext {
 	}
 
 	public void initializePageObjects() {
-		WebDriver driver = getdriver();
-		this.graphPage = new GraphPage(driver);
-		this.arrayPage = new ArrayPage(driver);
-		this.dataStructuresIntroductionPage = new DataStructuresIntroductionPage(driver);
-		this.homePage = new HomePage(driver);
-		this.loginPage = new LoginPage(driver);
-		this.registerPage = new RegisterPage(driver);
-		this.treePage = new TreePage(driver);
-		this.tryEditorPage = new TryEditorPage(driver);
+		WebDriver threadLocalDriver = getdriver();
+		this.graphPage = new GraphPage(threadLocalDriver);
+		this.arrayPage = new ArrayPage(threadLocalDriver);
+		this.dataStructuresIntroductionPage = new DataStructuresIntroductionPage(threadLocalDriver);
+		this.homePage = new HomePage(threadLocalDriver);
+		this.loginPage = new LoginPage(threadLocalDriver);
+		this.registerPage = new RegisterPage(threadLocalDriver);
+		this.treePage = new TreePage(threadLocalDriver);
+		this.tryEditorPage = new TryEditorPage(threadLocalDriver);
 	}
 
 	public GraphPage getGraphPage() {
