@@ -16,6 +16,7 @@ public class ArrayPage extends BasePage {
 	@FindBy(xpath=" //ul//a[@href='arrays-in-python']")
 	WebElement arraysInPythonLink;
 	
+	
 	@FindBy(xpath="//a[normalize-space()='Arrays Using List']")
 	WebElement arraysUsingList;
 	
