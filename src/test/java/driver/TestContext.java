@@ -69,52 +69,57 @@ public class TestContext {
 		threadLocalDriver.remove();
 	}
 
-	public void initializePageObjects() {
-		WebDriver threadLocalDriver = getdriver();
-		this.graphPage = new GraphPage(threadLocalDriver);
-		this.arrayPage = new ArrayPage(threadLocalDriver);
-		this.dataStructuresIntroductionPage = new DataStructuresIntroductionPage(threadLocalDriver);
-		this.homePage = new HomePage(threadLocalDriver);
-		this.loginPage = new LoginPage(threadLocalDriver);
-		this.registerPage = new RegisterPage(threadLocalDriver);
-		this.treePage = new TreePage(threadLocalDriver);
-		this.tryEditorPage = new TryEditorPage(threadLocalDriver);
-		this.linkedListPage = new LinkedListPage(threadLocalDriver);
-	}
-
 	public GraphPage getGraphPage() {
+		if (graphPage == null)
+			graphPage = new GraphPage(getdriver());
 		return graphPage;
 	}
 
 	public HomePage getHomePage() {
+		if (homePage == null)
+			homePage = new HomePage(getdriver());
 		return homePage;
 	}
 
 	public DataStructuresIntroductionPage getDataStructuresIntroductionPage() {
+		if (dataStructuresIntroductionPage == null)
+			dataStructuresIntroductionPage = new DataStructuresIntroductionPage(getdriver());
 		return dataStructuresIntroductionPage;
 	}
 
 	public LoginPage getLoginPage() {
+		if (loginPage == null)
+			loginPage = new LoginPage(getdriver());
 		return loginPage;
 	}
 
 	public TreePage getTreePage() {
+		if (treePage == null)
+			treePage = new TreePage(getdriver());
 		return treePage;
 	}
 
 	public TryEditorPage getTryEditorPage() {
+		if (tryEditorPage == null)
+			tryEditorPage = new TryEditorPage(getdriver());
 		return tryEditorPage;
 	}
 
 	public RegisterPage getRegisterPage() {
+		if (registerPage == null)
+			registerPage = new RegisterPage(getdriver());
 		return registerPage;
 	}
 	
 	public ArrayPage getArrayPage() {
+		if (arrayPage == null)
+			arrayPage = new ArrayPage(getdriver());
 		return arrayPage;
 	}
 	
 	public LinkedListPage getLinkedListPage() {
+		if (linkedListPage == null)
+			linkedListPage = new LinkedListPage(getdriver());
 		return linkedListPage;
 	}
 

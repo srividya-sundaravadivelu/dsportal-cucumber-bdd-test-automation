@@ -28,7 +28,6 @@ public class Hooks {
 		LogHelper.info("broswer value from Config Reader: "+browser);
 		testContext.setDriver(browser);
 		WebDriver driver = testContext.getdriver();
-		testContext.initializePageObjects();
 		LogHelper.info("WebDriver initialized successfully for: " + scenario.getName());
 		WebDriverWaitUtility.initializeWait(driver, ConfigReader.getWebDriverWaitTimeout());
 		LogHelper.info("Test started on Thread: " + Thread.currentThread().getId());
