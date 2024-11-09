@@ -19,6 +19,9 @@ public class DataStructuresIntroductionPage extends BasePage {
 	@FindBy(xpath = "//a[text()='Practice Questions']")
 	private WebElement practiceLink;
 	
+	@FindBy(xpath="//strong//p[contains(@class,'bg-secondary')]")
+	private WebElement pageTitle;
+	
 	
 	public void clickLinkUnderTopicsCovered(String itemName) {
 		WebElement item = driver.findElement(By.xpath("//a[contains(@class,'list-group-item') and text()='" + itemName + "']"));
@@ -33,5 +36,10 @@ public class DataStructuresIntroductionPage extends BasePage {
 	public void clickPracticeLink() {
 		WebDriverWaitUtility.waitForElementToBeClickable(practiceLink);
 		practiceLink.click();
+	}
+	
+	public String getPageTitle() {
+		WebDriverWaitUtility.waitForElementToBeVisible(pageTitle);
+		return pageTitle.getText();		
 	}
 }

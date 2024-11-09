@@ -52,6 +52,9 @@ public class TreePage extends BasePage {
 	@FindBy(xpath="//a[text()='Practice Questions']")
 	private WebElement practiceQuestionsLink;	
 	
+	@FindBy(xpath="//strong//p[contains(@class,'bg-secondary')]")
+	private WebElement pageTitle;
+	
 
 	public void clickItemUnderTopicsCovered(String itemName) {
 		WebElement item = driver.findElement(By.xpath("//a[contains(@class,'list-group-item') and text()='" + itemName + "']"));
@@ -121,5 +124,10 @@ public class TreePage extends BasePage {
 	public void clickPracticeQuestionsLink() {
 		WebDriverWaitUtility.waitForElementToBeClickable(practiceQuestionsLink);
 		practiceQuestionsLink.click();
+	}
+	
+	public String getPageTitle() {
+		WebDriverWaitUtility.waitForElementToBeVisible(pageTitle);
+		return pageTitle.getText();		
 	}
 }
