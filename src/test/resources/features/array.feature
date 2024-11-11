@@ -94,6 +94,33 @@ Feature:  Testing Array feature in dsportalapp.herokuapp
     When The user clicks "Try Here" button on "Applications of Array" Page
     Then The user should be redirected to the Try Editor page from Array page
     
+    
+  # Try Editor Page
+  @try-editor
+  Scenario: Run Button with valid code in Python Code Editor Page
+	  Given The user is on the Try Editor page
+	  When The user enters valid Python code from sheet "PythonCode" and row 1 and clicks the Run button
+	  Then The user is able to see the output inside the console  
+
+  @try-editor
+  Scenario: Run Button with invalid code in Python Code Editor Page
+    Given The user is on the Try Editor page	
+    When The user enters invalid Python code from sheet "PythonCode" and row 2 and clicks the Run button	
+    Then The user sees an error message in the alert window   
+    
+  @try-editor  
+  Scenario: Run Button without entering code in Python Code Editor Page
+    Given The user is on the Try Editor page	
+    When The user clicks the Run Button without entering code in the Editor	
+    Then The focus remains in the same page and no error message is displayed
+    
+	@try-editor
+  Scenario: Handle alert message in Python Code Editor Page
+    Given The user is on the Try Editor page with an alert error message	
+    When The user clicks the OK button in the alert window	
+    Then The user is on the same page having the Editor and Run button 
+     
+    
     #Practice Questions Page    
     @Tc_A13
     Scenario: The user is able to navigate to Practice page
