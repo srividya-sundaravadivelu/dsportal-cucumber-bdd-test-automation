@@ -1,8 +1,12 @@
 package stepDefinitions;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.ConfigReader;
@@ -17,4 +21,47 @@ public class LoginSteps {
 		HomePage homePage = loginPage.login(username, password);
 		Assert.assertTrue(homePage.isSignOutLinkVisible());
 	}
+	
+	//Anj 11/8
+	// @TC_l1
+	@Given("The user is on login page")
+	public void the_user_is_on_login_page() {
+	    // Write code here that turns the phrase above into concrete actions
+		loginPage.navigateToPage(ConfigReader.getLoginUrl());
+	}
+
+	@When("The user clicks on register link")
+	public void the_user_clicks_on_register_link() {
+	    // Write code here that turns the phrase above into concrete actions
+	    loginPage.clickRegisterlink();
+	}
+
+	@Then("The user will be redirected to register page")
+	public void the_user_will_be_redirected_to_register_page() {
+	    // Write code here that turns the phrase above into concrete actions
+		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getRegisterUrl());
+	}
+	
+	//@TC_l2
+	@When("The user enter invalid {string} and {string} click login button to verify")
+	public void the_user_enter_invalid_and_click_login_button_to_verify(String username, String password) {
+	    // Write code here that turns the phrase above into concrete actions
+	    //throw new io.cucumber.java.PendingException();
+		loginPage.verifyLogin(username, password);
+		//boolean isRequired=loginPage.verifyLogin(username, password);
+		loginPage.clickLogin();
+	}
+
+	@Then("User should get error message {string}")
+	public void user_should_get_error_message(String expectedMessage) {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+		String actualMessage=loginPage.actMsg();
+		Assert.assertEquals("Please fill out this field",expectedMessage, actualMessage); 
+	}
+         
+
 }
+
+	
+	

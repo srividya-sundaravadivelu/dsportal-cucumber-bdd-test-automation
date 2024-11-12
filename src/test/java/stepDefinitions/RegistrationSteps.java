@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import driver.DriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import utils.ConfigReader;
 
 public class RegistrationSteps {
@@ -20,5 +21,8 @@ public class RegistrationSteps {
 	public void user_should_see_get_started_page() {
 
 	}
+	
+	
+
 
 }
