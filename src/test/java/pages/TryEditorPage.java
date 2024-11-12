@@ -58,7 +58,9 @@ public class TryEditorPage extends BasePage {
 	public boolean checkForAlert() {
 		boolean alertIsPresent = false;
 		try {
-			driver.switchTo().alert();
+			LogHelper.info("Checking for alert. WebDriver instance: " + driver + ", Thread ID: "
+					+ Thread.currentThread().getId());
+			driver.switchTo().alert().accept();			
 			alertIsPresent = true;
 		} catch (NoAlertPresentException e) {
 			alertIsPresent = false;
