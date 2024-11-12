@@ -8,6 +8,8 @@ import utils.WebDriverWaitUtility;
 
 public class RegisterPage extends BasePage {
 
+	// Anjali
+
 	public RegisterPage(WebDriver driver) {
 		super(driver);
 	}
@@ -17,6 +19,19 @@ public class RegisterPage extends BasePage {
 
 	@FindBy(xpath = "//a[contains(text(),'Sign in')]")
 	private WebElement signinlink;
+
+	// An-11/7
+	@FindBy(xpath = "//*[@id='id_username']")
+	WebElement usernamebox;
+
+	@FindBy(xpath = "//*[@id='id_password1']")
+	WebElement passwordbox;
+
+	@FindBy(xpath = "//*[@id='id_password2']")
+	WebElement confirmpwbox;
+
+	@FindBy(xpath = "//form/input[@type='submit']")
+	WebElement regbutton;
 
 	public void clickRegister() {
 		WebDriverWaitUtility.waitForElementToBeClickable(registerlink).click();
