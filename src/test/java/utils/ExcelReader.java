@@ -43,4 +43,30 @@ public class ExcelReader {
 	public void close() throws IOException {
 		workbook.close();
 	}
+	
+	//method for practice questions of Array
+	public String getCellDataByTitle(String sheetName, String questionTitle, String columnName) {
+        Sheet sheet = workbook.getSheet(sheetName);
+        Row headerRow = sheet.getRow(0);
+        int colIndex = -1;
+
+        // Locate the column index based on the column name
+        for (Cell cell : headerRow) {
+            if (cell.getStringCellValue().equalsIgnoreCase(columnName)) {
+                colIndex = cell.getColumnIndex();
+                break;
+            }
+        }
+
+        // Return data for the row where question title matches
+        for (Row row : sheet) {
+            Cell titleCell = row.getCell(0);
+            if (titleCell != null && titleCell.getStringCellValue().equalsIgnoreCase(questionTitle)) {
+                Cell targetCell = row.getCell(colIndex);
+                return targetCell != null ? targetCell.getStringCellValue() : "";
+            }
+        }
+        return null;
+    }
 }
+
