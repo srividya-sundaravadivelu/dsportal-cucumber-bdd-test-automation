@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+
+import io.cucumber.java.en.When;
 import pages.RegisterPage;
+
 import utils.ConfigReader;
 
 public class RegistrationSteps {

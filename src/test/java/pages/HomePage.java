@@ -19,6 +19,21 @@ public class HomePage extends BasePage {
 	@FindBy(xpath = "//a[contains(@class,'dropdown-toggle')]")
 	private WebElement dropdownMenu;
 
+	// Anjali------
+	// signin
+	@FindBy(xpath = "//a[@href='/login']")
+	private WebElement signin;
+
+	// Register
+	@FindBy(xpath = "//a[@href=\"/register\"]")
+	private WebElement register;
+
+	// alert
+	@FindBy(xpath = "//*[@class='alert alert-primary']")
+	private WebElement alert_msg;
+
+	// ----till this line
+
 	public Boolean isSignOutLinkVisible() {
 		try {
 			WebDriverWaitUtility.waitForElementToBeVisible(signOutLink);
