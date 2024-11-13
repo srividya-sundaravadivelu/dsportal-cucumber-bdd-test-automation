@@ -35,7 +35,7 @@
 		<link>
 			<name>src/test/resources/ExcelData/ExcelFile.xlsx</name>
 			<type>1</type>
-			<location>C:/Users/srivi/Downloads/ExcelFile.xlsx</location>
+			<location>PROJECT_LOC/src/test/resources/ExcelData/ExcelFile.xlsx</location>
 		</link>
 	</linkedResources>
 </projectDescription>
