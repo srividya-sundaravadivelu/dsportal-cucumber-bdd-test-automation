@@ -25,6 +25,7 @@ public class TestContext {
 	private RegisterPage registerPage;
 	private TreePage treePage;
 	private TryEditorPage tryEditorPage;
+	private StackPage stackPage;
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -133,6 +134,12 @@ public class TestContext {
 		if (linkedListPage == null)
 			linkedListPage = new LinkedListPage(getdriver());
 		return linkedListPage;
+	}
+	
+	public StackPage getStackPage() {
+		if (stackPage == null)
+			stackPage = new StackPage(getdriver());
+		return stackPage;
 	}
 
 }

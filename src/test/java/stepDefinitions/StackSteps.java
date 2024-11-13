@@ -1,7 +1,9 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,8 +11,15 @@ import pages.StackPage;
 import utils.ConfigReader;
 
 public class StackSteps {
+	
+	TestContext testContext;
+	WebDriver driver;
+	StackPage stackPage;
 
-	StackPage stackPage = new StackPage();
+	public StackSteps(TestContext testContext) {
+		this.testContext = testContext;		
+		this.stackPage = testContext.getStackPage();
+	}
 	
 	    //Operations Page
 		@Given("The user is in the Stack page after logged in")
