@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ConfigReader {
 
 	private static Properties properties = new Properties();
+//    private static ThreadLocal<String> browser = ThreadLocal.withInitial(() -> "chrome");  // Default to Chrome if not set    
 
 	static {
 		try (InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream("config/config.properties")) {
@@ -17,6 +18,10 @@ public class ConfigReader {
 		} catch (IOException ex) {
 			throw new RuntimeException("Error loading config.properties file", ex);
 		}
+	}
+
+	public static void setBrowser(String browserName) {
+		properties.setProperty("browser", browserName);
 	}
 
 	public static String getBrowser() {
@@ -45,106 +50,120 @@ public class ConfigReader {
 		return properties.getProperty("home.url");
 	}
 
-//  Anjali- Register page URLs
-	public static String getRegisterUrl() {
-		return properties.getProperty("register.url");
-	}
-
-	// Tree Page URLs
-	public static String getTreeUrl() {
-		return properties.getProperty("tree.url");
-	}
-
-	public static String getOverviewOfTreesUrl() {
-		return properties.getProperty("tree.overview.of.trees.url");
-	}
-
-	public static String getTreeTerminologiesUrl() {
-		return properties.getProperty("tree.terminologies.url");
-	}
-
-	public static String getTypesOfTreesUrl() {
-		return properties.getProperty("tree.types.of.trees");
-	}
-
-	public static String getTreeTraversalsUrl() {
-		return properties.getProperty("tree.tree.traversals");
-	}
-
-	public static String getTreeTraversalsIllustrationsUrl() {
-		return properties.getProperty("tree.traversals.illustrations");
-	}
-
-	public static String getBinaryTreesUrl() {
-		return properties.getProperty("tree.binary.trees");
-	}
-
-	public static String getTypesOfBinaryTreesUrl() {
-		return properties.getProperty("tree.types.of.binary.trees");
-	}
-
-	public static String getTreeImplementationInPythonUrl() {
-		return properties.getProperty("tree.implementation.in.python");
-	}
-
-	public static String getBinaryTreeTraversalsUrl() {
-		return properties.getProperty("tree.binary.tree.traversals");
-	}
-
-	public static String getImplementationOfBinaryTreesUrl() {
-		return properties.getProperty("tree.implementation.of.binary.trees");
-	}
-
-	public static String getApplicationsOfBinaryTreesUrl() {
-		return properties.getProperty("tree.applications.of.binary.trees");
-	}
-
-	public static String getBinarySearchTreesUrl() {
-		return properties.getProperty("tree.binary.search.trees");
-	}
-
-	public static String getImplementationOfBstUrl() {
-		return properties.getProperty("tree.implementation.of.bst");
-	}
-
-	public static String getTreePracticeUrl() {
-		return properties.getProperty("tree.practice");
-	}
-
-	// Graph Page URLs
-	public static String getGraphHomeUrl() {
-		return properties.getProperty("graph.home.url");
-	}
-
-	public static String getGraphUrl() {
-		return properties.getProperty("graph.url");
-	}
-
-	public static String getGraphRepresentationsUrl() {
-		return properties.getProperty("graph.representations.url");
-	}
-
-	public static String getGraphPracticeUrl() {
-		return properties.getProperty("graph.practice.url");
-	}
-
-	// Try Editor URL
-	public static String getTryEditorUrl() {
-		return properties.getProperty("try.editor.url");
-	}
-
-	// Stack Page URLs
-	public static String getStackUrl() {
-		return properties.getProperty("stack.url");
-	}
-
-	// Queue Page URLs
-	public static String getQueueUrl() {
-		return properties.getProperty("queue.url");
-	}
-
-	// Array Page URLs
-	public static String getArrayUrl() {
+   //  Anjali- Register page URLs
+    public static String getRegisterUrl() {
+    	return properties.getProperty("register.url");
+    }
+    // Tree Page URLs
+    public static String getTreeUrl() {
+    	return properties.getProperty("tree.url");
+    }
+    
+    public static String getOverviewOfTreesUrl() {
+    	return properties.getProperty("tree.overview.of.trees.url");
+    }
+    
+    public static String getTreeTerminologiesUrl() {
+    	return properties.getProperty("tree.terminologies.url");
+    }
+    
+    public static String getTypesOfTreesUrl() {
+    	return properties.getProperty("tree.types.of.trees");
+    }
+    
+    public static String getTreeTraversalsUrl() {
+    	return properties.getProperty("tree.tree.traversals");
+    }
+    
+    public static String getTreeTraversalsIllustrationsUrl() {
+    	return properties.getProperty("tree.traversals.illustrations");
+    }
+    
+    public static String getBinaryTreesUrl() {
+    	return properties.getProperty("tree.binary.trees");
+    }
+    
+    public static String getTypesOfBinaryTreesUrl() {
+    	return properties.getProperty("tree.types.of.binary.trees");
+    }
+    
+    public static String getTreeImplementationInPythonUrl() {
+    	return properties.getProperty("tree.implementation.in.python");
+    }
+    
+    public static String getBinaryTreeTraversalsUrl() {
+    	return properties.getProperty("tree.binary.tree.traversals");
+    }
+    
+    public static String getImplementationOfBinaryTreesUrl() {
+    	return properties.getProperty("tree.implementation.of.binary.trees");
+    }
+    
+    public static String getApplicationsOfBinaryTreesUrl() {
+    	return properties.getProperty("tree.applications.of.binary.trees");
+    }
+    
+    public static String getBinarySearchTreesUrl() {
+    	return properties.getProperty("tree.binary.search.trees");
+    }
+    
+    public static String getImplementationOfBstUrl() {
+    	return properties.getProperty("tree.implementation.of.bst");
+    }
+    
+    public static String getTreePracticeUrl() {
+    	return properties.getProperty("tree.practice");
+    }
+    
+    // Graph Page URLs
+    public static String getGraphHomeUrl() {
+    	return properties.getProperty("graph.home.url");
+    }
+    
+    public static String getGraphUrl() {
+    	return properties.getProperty("graph.url");
+    }
+    
+    public static String getGraphRepresentationsUrl() {
+    	return properties.getProperty("graph.representations.url");
+    } 
+    
+    public static String getGraphPracticeUrl() {
+    	return properties.getProperty("graph.practice.url");
+    }
+    
+    // Try Editor URL
+    public static String getTryEditorUrl() {
+    	return properties.getProperty("try.editor.url");
+    } 
+    
+    //Stack Page URLs
+    public static String getStackUrl() {
+    	return properties.getProperty("stack.url");
+    }
+    
+    public static String getOperationsInStackUrl() {
+    	return properties.getProperty("stack.operations.in.stack.url");
+    }
+    
+    public static String getImplementationUrl() {
+    	return properties.getProperty("stack.implementation.url");
+    }
+    
+    public static String getApplicationsUrl() {
+    	return properties.getProperty("stack.applications.url");
+    }
+    
+    public static String getStackPracticeUrl() {
+    	return properties.getProperty("stack.practice.url");
+    }
+    
+    //Queue Page URLs
+    public static String getQueueUrl() {
+    	return properties.getProperty("queue.url");
+    }
+    //Array Page URLs
+    public static String getArrayUrl() {
 		return properties.getProperty("array.url");
 
 	}
@@ -235,4 +254,18 @@ public class ConfigReader {
 	public static String getLink(String key) {
 		return properties.getProperty(key);
 	}
+
+	public static boolean isChromeHeadless() {
+		return Boolean.parseBoolean(properties.getProperty("browser.chrome.headless", "false"));
+	}
+	
+	public static boolean isFireFoxHeadless() {
+		return Boolean.parseBoolean(properties.getProperty("browser.firefox.headless", "false"));
+	}
+	
+	public static boolean isEdgeHeadless() {
+		return Boolean.parseBoolean(properties.getProperty("browser.edge.headless", "false"));
+	}
+	
+	
 }

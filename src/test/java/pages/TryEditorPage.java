@@ -3,9 +3,9 @@ package pages;
 import java.io.IOException;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,6 +15,10 @@ import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class TryEditorPage extends BasePage {
+
+	public TryEditorPage(WebDriver driver) {
+		super(driver);
+	}
 
 	@FindBy(xpath = "//button[text()='Run']")
 	private WebElement runButton;
@@ -54,7 +58,9 @@ public class TryEditorPage extends BasePage {
 	public boolean checkForAlert() {
 		boolean alertIsPresent = false;
 		try {
-			driver.switchTo().alert();
+			LogHelper.info("Checking for alert. WebDriver instance: " + driver + ", Thread ID: "
+					+ Thread.currentThread().getId());
+			driver.switchTo().alert().accept();			
 			alertIsPresent = true;
 		} catch (NoAlertPresentException e) {
 			alertIsPresent = false;
