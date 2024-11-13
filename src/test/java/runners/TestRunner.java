@@ -17,17 +17,17 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
 		monochrome = true // For better console output
 
-		, tags = "@graph or @tree or @data-structures-introduction")
+		, tags = "@graph")
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
 //	Important! Uncomment below for CrossBrowser & Parallel Testing
-//	@Override
-//	@DataProvider(parallel = true)
-//	public Object[][] scenarios() {
-//		return super.scenarios();
-//	}
+	@Override
+	@DataProvider(parallel = true)
+	public Object[][] scenarios() {
+		return super.scenarios();
+	}
 
 	@BeforeClass
 	@Parameters({ "browser" })
