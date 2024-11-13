@@ -49,8 +49,7 @@ public class TestContext {
 			LogHelper.info("Firefox Driver is created");
 			break;
 		case "edge":
-//			WebDriverManager.edgedriver().setup();
-			WebDriverManager.edgedriver().driverVersion("130.0.2849.80").setup();
+			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (ConfigReader.isEdgeHeadless())
 				edgeOptions.addArguments("--headless");
