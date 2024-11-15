@@ -36,7 +36,7 @@ public class LoginSteps {
 	}
 
 	// Anj 11/8
-	// @TC_l1
+	// @TC_log1
 	@Given("The user is on login page")
 	public void the_user_is_on_login_page() {
 		// Write code here that turns the phrase above into concrete actions
@@ -55,7 +55,7 @@ public class LoginSteps {
 		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getRegisterUrl());
 	}
 
-	// @TC_l2
+	// @TC_log2
 	@When("The user enter invalid {string} and {string} click login button to verify")
 	public void the_user_enter_invalid_and_click_login_button_to_verify(String username, String password) {
 		// Write code here that turns the phrase above into concrete actions
@@ -71,6 +71,36 @@ public class LoginSteps {
 		// throw new io.cucumber.java.PendingException();
 		String actualMessage = loginPage.actMsg();
 		Assert.assertEquals("Please fill out this field", expectedMessage, actualMessage);
+		
 	}
+	
+	// 11/12---
+	
+	//@TC_log3
+	@Given("The user is on login page with valid username {string} and password {string}")
+	public void the_user_is_on_login_page_with_valid_username_and_password(String username, String password) {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+		loginPage.navigateToPage(ConfigReader.getLoginUrl());
+		loginPage.login(username, password);
+		
+	}
+	@When("The user click sigout")
+	public void the_user_click_sigout() {
+	    // Write code here that turns the phrase above into concrete actions
+	   //throw new io.cucumber.java.PendingException();
+		
+		loginPage.clickSignoutlink();
+	}
+
+	@Then("The user is redirected to homepage")
+	public void the_user_is_redirected_to_homepage() {
+	    // Write code here that turns the phrase above into concrete actions
+	    //throw new io.cucumber.java.PendingException();
+		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getHomeUrl());
+		
+	}
+
+	//---
 
 }
