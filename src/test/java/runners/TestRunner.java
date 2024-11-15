@@ -16,17 +16,16 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 		plugin = { "pretty", "html:target/cucumber-reports.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
 		monochrome = true // For better console output
-		, tags = "@graph or @tree or @data-structures-introduction")
-
+		, tags = "@home or @array or linkedlist")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
-	
-//	Important! Uncomment below for CrossBrowser & Parallel Testing
-//	@Override
-//	@DataProvider(parallel = true)
-//	public Object[][] scenarios() {
-//		return super.scenarios();
-//	}
+
+	// Important! Uncomment below for CrossBrowser & Parallel Testing
+	@Override
+	@DataProvider(parallel = true)
+	public Object[][] scenarios() {
+		return super.scenarios();
+	}
 
 	@BeforeClass
 	@Parameters({ "browser" })
@@ -34,7 +33,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 		LogHelper.info("Browser value from Testng Xml file:" + browser);
 		if (browser != null) {
 			ConfigReader.setBrowser(browser);
-			LogHelper.info("Config Reader browser value: " + ConfigReader.getBrowser());			
+			LogHelper.info("Config Reader browser value: " + ConfigReader.getBrowser());
 		}
 	}
 }

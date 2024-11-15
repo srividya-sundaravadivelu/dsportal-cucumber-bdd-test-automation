@@ -1,43 +1,51 @@
-
 @home
 Feature: User wants to lauch application and test Home page for DsAlgo
 
-  @TC_01_Home
-  Scenario: User launch home page
-    Given The user open the browser
-     When The user enter the DS_Algo Portal <URL>
-    Then The user should landed on the DS_Algo Get Started page with message "You are at the right place"
-    
-  
-  @TC_02_Home
-  Scenario: User is on home page and sees Register and Sign in link
-    Given The user should open the DS Algo Portal URL in any supported browser
+  @TS_H1
+  Scenario: User launch home page of an dsalgo project
+    Given The user opens DS Algo portal link
     When The user clicks the "Get Started" button
-    Then The user should land in Data Structure Introduction Page with "Register" and "Sign in" links
-    
-  
- 
-      
-    Scenario: User is on Home page and click on dropdown without sign in
-    Given The user is on the DS Home page
-    When The user selects any data structures item from the drop down without Sign in
+    Then The user should be redirected to homepage
+
+  @TS_H2
+  Scenario Outline: User is on Home page and click getstarted link "<item>" on home page without sign in
+    Given The user is on Home page
+    When The user clicks on Get Started link on homepage "<item>" without login
     Then The user get warning message "You are not logged in"
-    
-     
-    Scenario: User is on Home page and click getstarted link "<option>" on home page without sign in
-    Given The user is on the DS Home page
-    When The user clicks any "Get Started" buttons of data structures on the DS Introduction page
+
+    Examples: 
+      | item                         |
+      | Data-structures-introduction |
+      | Array                        |
+      | Linked-list                  |
+      | Stack                        |
+      | Queue                        |
+      | Tree                         |
+      | Graph                        |
+
+  @TS_H3
+  Scenario Outline: User is on Home page and click on dropdown "<item>" without sign in
+    Given The user is on Home page
+    When The user clicks on dropdown "<item>"
     Then The user get warning message "You are not logged in"
-    
-     
-    Scenario: User is on Home page and click on Register
-    Given The user is on the DS Home page
-    When The user clicks Register link on the DS Introduction page
-    Then The user redirected to Register 
-    
-   
-    Scenario: User is on Home page and click on sign In
-    Given The user is on the DS Algo Introduction Page
-    When The user should click the Sign in link
+
+    Examples: 
+      | item        |
+      | Arrays      |
+      | Linked List |
+      | Stack       |
+      | Queue       |
+      | Tree        |
+      | Graph       |
+
+  @TS_H4
+  Scenario: User is on Home page and click on sign in
+    Given The user is on Home page
+    When The user clicks on signin link
     Then The user redirected to login page
-   
+
+  @TS_H5
+  Scenario: User is on Home page and click on Register
+    Given The user is on Home page
+    When The user clicks on register link of Home page
+    Then The user redirected to Registration page
