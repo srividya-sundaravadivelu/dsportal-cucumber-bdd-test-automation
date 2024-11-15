@@ -8,14 +8,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.*;
 import utils.ConfigReader;
 import utils.LogHelper;
 
 public class TestContext {
 
-	private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+	WebDriver driver;
 	private GraphPage graphPage;
 	private ArrayPage arrayPage;
 	private DataStructuresIntroductionPage dataStructuresIntroductionPage;
@@ -30,27 +29,23 @@ public class TestContext {
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
 		long pageLoadTimeout = Long.parseLong(ConfigReader.getPageLoadTimeout());
-		WebDriver driver;
 
 		switch (browser.toLowerCase()) {
-		case "chrome":
-			WebDriverManager.chromedriver().setup();
+		case "chrome":			
 			ChromeOptions chromeOptions = new ChromeOptions();
 			if (ConfigReader.isChromeHeadless())
 				chromeOptions.addArguments("--headless");
 			driver = new ChromeDriver(chromeOptions);
 			LogHelper.info("Chrome Driver is created");
 			break;
-		case "firefox":
-			WebDriverManager.firefoxdriver().setup();
+		case "firefox":			
 			FirefoxOptions ffOptions = new FirefoxOptions();
 			if (ConfigReader.isFireFoxHeadless())
 				ffOptions.addArguments("--headless");
 			driver = new FirefoxDriver(ffOptions);
 			LogHelper.info("Firefox Driver is created");
 			break;
-		case "edge":
-			WebDriverManager.edgedriver().setup();
+		case "edge":			
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (ConfigReader.isEdgeHeadless())
 				edgeOptions.addArguments("--headless");
@@ -61,22 +56,19 @@ public class TestContext {
 			throw new RuntimeException("Browser not supported: " + browser);
 		}
 
-		threadLocalDriver.set(driver);
-		getdriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
-		getdriver().manage().window().maximize();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+		driver.manage().window().maximize();
 
 	}
 
 	public WebDriver getdriver() {
-		return threadLocalDriver.get();
+		return driver;
 	}
 
 	public void quitDriver() {
-	    WebDriver driver = getdriver();
 	    if (driver != null) {
 	        LogHelper.info("Quitting WebDriver instance: " + driver);
 	        driver.quit();
-	        threadLocalDriver.remove();
 	    } else {
 	        LogHelper.warn("WebDriver instance is already null or has been quit.");
 	    }
@@ -84,61 +76,61 @@ public class TestContext {
 
 	public GraphPage getGraphPage() {
 		if (graphPage == null)
-			graphPage = new GraphPage(getdriver());
+			graphPage = new GraphPage(driver);
 		return graphPage;
 	}
 
 	public HomePage getHomePage() {
 		if (homePage == null)
-			homePage = new HomePage(getdriver());
+			homePage = new HomePage(driver);
 		return homePage;
 	}
 
 	public DataStructuresIntroductionPage getDataStructuresIntroductionPage() {
 		if (dataStructuresIntroductionPage == null)
-			dataStructuresIntroductionPage = new DataStructuresIntroductionPage(getdriver());
+			dataStructuresIntroductionPage = new DataStructuresIntroductionPage(driver);
 		return dataStructuresIntroductionPage;
 	}
 
 	public LoginPage getLoginPage() {
 		if (loginPage == null)
-			loginPage = new LoginPage(getdriver());
+			loginPage = new LoginPage(driver);
 		return loginPage;
 	}
 
 	public TreePage getTreePage() {
 		if (treePage == null)
-			treePage = new TreePage(getdriver());
+			treePage = new TreePage(driver);
 		return treePage;
 	}
 
 	public TryEditorPage getTryEditorPage() {
 		if (tryEditorPage == null)
-			tryEditorPage = new TryEditorPage(getdriver());
+			tryEditorPage = new TryEditorPage(driver);
 		return tryEditorPage;
 	}
 
 	public RegisterPage getRegisterPage() {
 		if (registerPage == null)
-			registerPage = new RegisterPage(getdriver());
+			registerPage = new RegisterPage(driver);
 		return registerPage;
 	}
 
 	public ArrayPage getArrayPage() {
 		if (arrayPage == null)
-			arrayPage = new ArrayPage(getdriver());
+			arrayPage = new ArrayPage(driver);
 		return arrayPage;
 	}
 
 	public LinkedListPage getLinkedListPage() {
 		if (linkedListPage == null)
-			linkedListPage = new LinkedListPage(getdriver());
+			linkedListPage = new LinkedListPage(driver);
 		return linkedListPage;
 	}
 	
 	public StackPage getStackPage() {
 		if (stackPage == null)
-			stackPage = new StackPage(getdriver());
+			stackPage = new StackPage(driver);
 		return stackPage;
 	}
 

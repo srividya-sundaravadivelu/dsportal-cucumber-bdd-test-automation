@@ -1,13 +1,14 @@
 package pages;
 
 import java.io.IOException;
-
+import java.time.Duration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.ConfigReader;
 import utils.ExcelReader;
@@ -44,29 +45,28 @@ public class TryEditorPage extends BasePage {
 
 	public String handleAlert() {
 		String alertMessage = "";
-		try {
-			WebDriverWaitUtility.waitForAlert();
+		if (isAlertPresent()) {
 			Alert alert = driver.switchTo().alert();
 			alertMessage = alert.getText();
 			alert.accept();
-		} catch (NoAlertPresentException e) {
-			LogHelper.error(e.getMessage());
+		} else {
+			LogHelper.info("No alert present");
 		}
 		return alertMessage;
 	}
 
-	public boolean checkForAlert() {
-		boolean alertIsPresent = false;
+	public boolean isAlertPresent() {
 		try {
 			LogHelper.info("Checking for alert. WebDriver instance: " + driver + ", Thread ID: "
 					+ Thread.currentThread().getId());
-			driver.switchTo().alert().accept();			
-			alertIsPresent = true;
-		} catch (NoAlertPresentException e) {
-			alertIsPresent = false;
+
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.alertIsPresent());			
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 
-		return alertIsPresent;
 	}
 
 	public String executePythonCodeFromExcel(String sheetName, int rowNumber) throws IOException {

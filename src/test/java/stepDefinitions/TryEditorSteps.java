@@ -92,7 +92,7 @@ public class TryEditorSteps {
 	@Then("The focus remains in the same page and no error message is displayed") 
 	public void focus_remains_in_the_same_page_and_no_error_message_is_displayed() {
 		Assert.assertEquals(tryEditorPage.getCurrentUrl(), ConfigReader.getTryEditorUrl());
-		Assert.assertFalse(tryEditorPage.checkForAlert());
+		Assert.assertFalse(tryEditorPage.isAlertPresent());
 		LogHelper.info("The focus remains in the same page and no error message is displayed");
 	}
 

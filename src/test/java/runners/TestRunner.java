@@ -13,14 +13,26 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 //@RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features", // Path to feature files
 		glue = { "stepDefinitions", "hooks" }, // Path to step definitions package
-		plugin = { "pretty", "html:target/cucumber-reports.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+		plugin = { "pretty", "html:target/cucumber-reports.html", 
+				"json:target/cucumber-reports/cucumber.json",
+				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
+<<<<<<< HEAD
 		monochrome = true // For better console output
 		, tags = "@home or @array or @linkedlist")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 
 	// Important! Uncomment below for CrossBrowser & Parallel Testing
+=======
+		monochrome = true // For better console output 
+		, tags = "@graph or @tree or @data-structures-introduction or @array1 or @Linkedlist or @stack or @queue or @home or @login or @register")
+
+
+public class TestRunner extends AbstractTestNGCucumberTests {
+	
+//	Important! Uncomment below for CrossBrowser & Parallel Testing
+>>>>>>> 6af90c78c2a1533990f0f34e929b5e044f167c48
 	@Override
 	@DataProvider(parallel = true)
 	public Object[][] scenarios() {

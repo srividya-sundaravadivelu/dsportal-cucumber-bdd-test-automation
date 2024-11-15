@@ -24,7 +24,13 @@ public class LoginPage extends BasePage {
 
 	@FindBy(xpath = "//input[@type='submit' and @value='Login']")
 	private WebElement loginButton;
-
+	//--11/12
+	@FindBy(xpath="//div[@class='alert alert-primary']")
+	private WebElement alert;
+	
+	@FindBy(xpath="//a[@href='/logout']")
+	private WebElement signout;
+    //--
 	// Anjali-11/8
 	@FindBy(xpath = "//a[@href=\"/register\"]")
 	private WebElement register;
@@ -33,7 +39,7 @@ public class LoginPage extends BasePage {
 
 	String expectedMessage;
 
-//---
+     //---
 	public HomePage login(String username, String password) {
 		usernameField.clear();
 		usernameField.sendKeys(username);
@@ -47,6 +53,14 @@ public class LoginPage extends BasePage {
 		WebDriverWaitUtility.waitForElementToBeClickable(register);
 
 		register.click();
+	}
+	
+	//--11/12
+	
+	public void clickSignoutlink() {
+		WebDriverWaitUtility.waitForElementToBeClickable(signout);
+		signout.click();
+		
 	}
 
 	public Boolean verifyLogin(String username, String password) {
