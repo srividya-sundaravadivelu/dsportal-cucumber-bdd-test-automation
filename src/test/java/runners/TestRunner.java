@@ -17,28 +17,13 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 				"json:target/cucumber-reports/cucumber.json",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
-<<<<<<< HEAD
-<<<<<<< HEAD
-		monochrome = true // For better console output
-		, tags = "@home or @array or @linkedlist")
-
-public class TestRunner extends AbstractTestNGCucumberTests {
-
-	// Important! Uncomment below for CrossBrowser & Parallel Testing
-=======
-=======
->>>>>>> master
 		monochrome = true // For better console output 
-		, tags = "@graph or @tree or @data-structures-introduction or @array1 or @Linkedlist or @stack or @queue or @home or @login or @register")
+		, tags = "@graph or @tree or @data-structures-introduction or @array or @linkedlist or @stack or @queue or @home or @login or @register")
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
 //	Important! Uncomment below for CrossBrowser & Parallel Testing
-<<<<<<< HEAD
->>>>>>> 6af90c78c2a1533990f0f34e929b5e044f167c48
-=======
->>>>>>> master
 	@Override
 	@DataProvider(parallel = true)
 	public Object[][] scenarios() {
