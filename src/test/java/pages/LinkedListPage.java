@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +10,11 @@ import utils.ConfigReader;
 import utils.WebDriverWaitUtility;
 
 public class LinkedListPage extends BasePage {
-	
+
 	public LinkedListPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	@FindBy(xpath = "//a[@href='introduction']")
 	WebElement introductionLink;
 
@@ -49,6 +51,9 @@ public class LinkedListPage extends BasePage {
 	@FindBy(id = "output")
 	WebElement output;
 
+	@FindBy(xpath = "//a[contains(@href, 'question')]")
+	WebElement lListPracticeQns;
+
 	public void clickIntroductionLink() {
 		WebDriverWaitUtility.waitForElementToBeClickable(introductionLink);
 		introductionLink.click();
@@ -83,28 +88,41 @@ public class LinkedListPage extends BasePage {
 		WebDriverWaitUtility.waitForElementToBeClickable(deletionLink);
 		deletionLink.click();
 	}
+
 	public void clickPracticeQuestionLinkOfLnkdList() {
 		WebDriverWaitUtility.waitForElementToBeClickable(practiceQuestionLinkOfLnkdList);
 		practiceQuestionLinkOfLnkdList.click();
 	}
+
 	public String getLinkedListPageTitle() {
 		String title = driver.getTitle();
 		return title;
 	}
+
 	public String getLinkedListPracticeQuestionUrl() {
 		String title = driver.getTitle();
 		return title;
-		
+
 	}
-	
+
 	public void clickTryHereLink(String btnName, String dsName) {
-		
+
 		tryHereLink.click();
 	}
+
 	public void getNavigateToPage(String pageName) {
-		String pageLink = "linkedlist." + pageName.replaceAll("\s", ".")+".url";		
-		String url=ConfigReader.getLink(pageLink.toLowerCase());
+		String pageLink = "linkedlist." + pageName.replaceAll("\s", ".") + ".url";
+		String url = ConfigReader.getLink(pageLink.toLowerCase());
 		driver.get(url);
+	}
+
+	public boolean isFindLlistpracticeQnsPresent() {
+		try {
+			return lListPracticeQns.isDisplayed(); // Returns true if the element is displayed
+		} catch (NoSuchElementException e) {
+			// If NoSuchElementException is thrown, the element is absent
+			return false;
+		}
 	}
 
 }

@@ -7,9 +7,9 @@ import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.GraphPage;
 import pages.HomePage;
 import utils.ConfigReader;
+import utils.LogHelper;
 
 public class HomeSteps {
 
@@ -17,33 +17,37 @@ public class HomeSteps {
 	WebDriver driver;
 
 	HomePage homePage;
-	
+
 	public HomeSteps(TestContext testContext) {
 		this.testContext = testContext;
 		this.driver = testContext.getdriver();
 		this.homePage = testContext.getHomePage();
 	}
-	
+
 	@Given("The user is on the Home page")
 	public void the_user_is_on_the_home_page() {
-		homePage.navigateToPage(ConfigReader.getHomeUrl());
+		homePage.clickHomePageLink();
+		LogHelper.info("user is on the Home page");
 	}
 
 	// Common Navigation
 	@When("The user clicks the {string} item from the drop down menu")
 	public void the_user_clicks_the_item_from_the_drop_down_menu(String itemName) {
 		homePage.clickDropDownItem(itemName);
-}
+		LogHelper.info("user sees the dropdown of Home page");
+	}
 
 	@When("The user clicks the Get Started button in {string} Panel")
 	public void the_user_clicks_the_get_started_button_in_panel(String itemName) {
 		homePage.clickGetStarted(itemName);
+		LogHelper.info("user clicks " + itemName + " Home page");
 	}
 
 	@Then("The user should be redirected to the {string} page")
 	public void the_user_should_be_redirected_to_the_page(String pageName) {
 		String expectedUrl = getPageUrl(pageName);
 		Assert.assertEquals(homePage.getCurrentUrl(), expectedUrl);
+		LogHelper.info("user is on " + pageName);
 	}
 
 	private String getPageUrl(String pageName) {
@@ -59,105 +63,93 @@ public class HomeSteps {
 		case "stack":
 			return ConfigReader.getStackUrl();
 		case "queue":
-			return ConfigReader.getQueueUrl();			
+			return ConfigReader.getQueueUrl();
 		case "data-structures-introduction":
 			return ConfigReader.getDataStructuresIntroductionUrl();
 		default:
 			throw new IllegalArgumentException("Unknown page: " + pageName);
 		}
 	}
-	@Given("The user open the browser")
-	public void the_user_open_the_browser() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
 
-	@When("The user enter the DS_Algo Portal <URL>")
-	public void the_user_enter_the_ds_algo_portal_url() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
-	@Then("The user should landed on the DS_Algo Get Started page with message {string}")
-	public void the_user_should_landed_on_the_ds_algo_get_started_page_with_message(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
-	@Given("The user should open the DS Algo Portal URL in any supported browser")
-	public void the_user_should_open_the_ds_algo_portal_url_in_any_supported_browser() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
+	// @TS_H1
 	@When("The user clicks the {string} button")
 	public void the_user_clicks_the_button(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+		homePage.clickGetStarted_link(string);
+		LogHelper.info("user clicks Get Started link");
 	}
 
-	@Then("The user should land in Data Structure Introduction Page with {string} and {string} links")
-	public void the_user_should_land_in_data_structure_introduction_page_with_and_links(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+	// @TS_H1
+	@Then("The user should be redirected to homepage")
+	public void the_user_should_be_redirected_to_homepage() {
+		String Title = homePage.getPageTitle();
+		Assert.assertEquals(Title, "NumpyNinja", "Title do not match");
+		LogHelper.info("current page is: " + Title);
 	}
 
-	
-
-	@When("The user selects any data structures item from the drop down without Sign in")
-	public void the_user_selects_any_data_structures_item_from_the_drop_down_without_sign_in() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+	// @TS_H2
+	@Given("The user is on Home page")
+	public void the_user_is_on_home_page() {
+		homePage.clickHomePageLink();
+		LogHelper.info("The user is on Home page");
 	}
 
+	// @TS_H2
+	@When("The user clicks on Get Started link on homepage {string} without login")
+	public void the_user_clicks_on_get_started_link_on_homepage_without_login(String string) {
+		homePage.clickGetStarted(string);
+		LogHelper.info("The user clicks Get Started  without login");
+
+	}
+
+	// @TS_H2&@TS_H3
 	@Then("The user get warning message {string}")
 	public void the_user_get_warning_message(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+		String alert = homePage.alert();
+		Assert.assertEquals(alert, string, "Title do not match");
+		LogHelper.info("The user gets message " + alert);
 	}
 
-	@Given("The user is on the DS Home page")
-	public void the_user_is_on_the_ds_home_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-	
-
-	@When("The user clicks any {string} buttons of data structures on the DS Introduction page")
-	public void the_user_clicks_any_buttons_of_data_structures_on_the_ds_introduction_page(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+	// @TS_H3
+	@When("The user clicks on dropdown {string}")
+	public void the_user_clicks_on_dropdown(String string) {
+		homePage.clickDropDownItem(string);
+		LogHelper.info("The user clicks" + string);
 	}
 
-	@When("The user clicks Register link on the DS Introduction page")
-	public void the_user_clicks_register_link_on_the_ds_introduction_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+	// @TS_H4
+	@When("The user clicks on signin link")
+	public void the_user_clicks_on_signin_link() {
+		homePage.signin_link();
+		LogHelper.info("The user is on login page");
 	}
 
-	@Then("The user redirected to Register")
-	public void the_user_redirected_to_register() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
-	@Given("The user is on the DS Algo Introduction Page")
-	public void the_user_is_on_the_ds_algo_introduction_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
-	@When("The user should click the Sign in link")
-	public void the_user_should_click_the_sign_in_link() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-
+	// @TS_H4
 	@Then("The user redirected to login page")
 	public void the_user_redirected_to_login_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+		String Title = homePage.home_page();
+		Assert.assertEquals(Title, "Login", "Title do not match");
+		LogHelper.info("The user is on" + Title + "page");
 	}
 
+	// @TS_H5
+	@Given("The user opens DS Algo portal link")
+	public void the_user_opens_ds_algo_portal_link() {
+		homePage.dsalgopage();
+		LogHelper.info("The user is on DsAlgo page");
+	}
+
+	// @TS_H5
+	@When("The user clicks on register link of Home page")
+	public void the_user_clicks_on_register_link_of_home_page() {
+		homePage.register_link();
+		LogHelper.info("The user clicks register of home page");
+	}
+
+	@Then("The user redirected to Registration page")
+	public void the_user_redirected_to_registration_page() {
+		String Title = homePage.register_page();
+		Assert.assertEquals(Title, "Registration", "Title do not match");
+		LogHelper.info("The user is on" + Title);
+	}
 
 }
