@@ -21,18 +21,20 @@ public class LoginSteps {
 	WebDriver driver;
 
 	LoginPage loginPage;
+	HomePage homePage;
 
 	public LoginSteps(TestContext testContext) {
 		this.testContext = testContext;
 		this.driver = testContext.getdriver();
 		this.loginPage = testContext.getLoginPage();
+		this.homePage = testContext.getHomePage();
 	}
 
 	@Given("The user is logged in with username {string} and password {string}")
 	public void the_user_is_logged_in_with_username_and_password(String username, String password) {
 		loginPage.navigateToPage(ConfigReader.getLoginUrl());
 		loginPage.login(username, password);
-//		Assert.assertTrue(homePage.isSignOutLinkVisible());
+		Assert.assertTrue(homePage.isSignOutLinkVisible());
 	}
 
 	// Anj 11/8

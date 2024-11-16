@@ -41,10 +41,15 @@ public class LoginPage extends BasePage {
 
      //---
 	public HomePage login(String username, String password) {
+		WebDriverWaitUtility.waitForElementToBeVisible(usernameField);
 		usernameField.clear();
 		usernameField.sendKeys(username);
+		
+		WebDriverWaitUtility.waitForElementToBeVisible(passwordField);
 		passwordField.clear();
 		passwordField.sendKeys(password);
+		
+		WebDriverWaitUtility.waitForElementToBeClickable(loginButton);
 		loginButton.click();
 		return new HomePage(driver);
 	}
