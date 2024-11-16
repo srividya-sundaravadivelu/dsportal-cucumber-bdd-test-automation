@@ -52,16 +52,16 @@ Feature: Queue page navigation
 
     Examples: 
       | SheetName  | RowNumber |
-      | PythonCode |         0 |
+      | PythonCode |         1 |
 
   Scenario Outline: Run Button with invalid code in Python Code Editor Page
     Given The user is on the Try Editor page
-    When The user enters invalid Python code from sheet "<Sheetname>" and row <RowNumber> and clicks the Run button
+    When The user enters invalid Python code from sheet "<SheetName>" and row <RowNumber> and clicks the Run button
     Then The user sees an error message in the alert window
 
     Examples: 
       | SheetName  | RowNumber |
-      | PythonCode |         1 |
+      | PythonCode |         2 |
 
   Scenario: Run Button without entering code in Python Code Editor Page
     Given The user is on the Try Editor page
