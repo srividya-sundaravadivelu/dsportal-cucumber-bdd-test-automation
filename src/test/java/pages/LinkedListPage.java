@@ -117,12 +117,14 @@ public class LinkedListPage extends BasePage {
 	}
 
 	public boolean isFindLlistpracticeQnsPresent() {
+		boolean flag = true;
 		try {
-			return lListPracticeQns.isDisplayed(); // Returns true if the element is displayed
-		} catch (NoSuchElementException e) {
+			flag = lListPracticeQns.isDisplayed(); // Returns true if the element is displayed
+		} catch (Exception e) {
 			// If NoSuchElementException is thrown, the element is absent
-			return false;
+			flag = false;
 		}
+		return flag;
 	}
 
 }
