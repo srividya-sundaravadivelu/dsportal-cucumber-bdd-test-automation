@@ -42,7 +42,7 @@ Feature: Queue page navigation
   Scenario: TryButton in Implementation of Queue in Python page
     Given The user is in the Implementation of Queue in Python page
     When The user clicks Try Here button in Implementation of Queue in Python
-    Then The user should be redirected to a page having a text editor
+    Then The user should be redirected to a page having a text editor in queue
 
   #Try Editor Page
   Scenario Outline: Run Button with valid code in Python Code Editor Page
@@ -82,7 +82,7 @@ Feature: Queue page navigation
   Scenario: TryButton in Implementation using collections deque page
     Given The user is in the Implementation using collections deque page
     When The user clicks Try Here button in Implementation using collections deque
-    Then The user should be redirected to a page having a text editor
+    Then The user should be redirected to a page having a text editor in queue
 	
   #implementation_using_array
   Scenario: Go to Implementation using array page from Queue page
@@ -93,7 +93,7 @@ Feature: Queue page navigation
   Scenario: TryButton in Implementation using array page
     Given The user is in the Implementation using array page
     When The user clicks Try Here button in Implementation using array
-    Then The user should be redirected to a page having a text editor
+    Then The user should be redirected to a page having a text editor in queue
 	
   #queue_Operations
   Scenario: Go to Queue Operations page from Queue page
@@ -104,10 +104,10 @@ Feature: Queue page navigation
   Scenario: TryButton in Queue Operations page
     Given The user is in the Queue Operations page
     When The user clicks Try Here button in Queue Operations page
-    Then The user should be redirected to a page having a text editor
+    Then The user should be redirected to a page having a text editor in queue
 	
   #practice_ques_in_queue
   Scenario: Go to Practice Questions page from Queue Operations page
     Given The user is in the Queue Operations page after logged in
     When The user clicks Practice Questions link in queue
-    Then The user should be redirected to Practice Questions page
+    Then The user should be redirected to Practice Questions page in queue

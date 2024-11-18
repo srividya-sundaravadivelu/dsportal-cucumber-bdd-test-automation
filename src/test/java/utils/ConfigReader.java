@@ -162,6 +162,26 @@ public class ConfigReader {
     public static String getQueueUrl() {
     	return properties.getProperty("queue.url");
     }
+    
+    public static String getImplementationofQueueinPython() {
+    	return properties.getProperty("queue.implementation.of.queue.in.python.url");
+    }
+    
+    public static String getImplementationUsingCollectionsDeque() {
+    	return properties.getProperty("queue.implementation.using.collections.deque.url");
+    }
+    
+    public static String getImplementationUsingArrayinQueue() {
+    	return properties.getProperty("queue.implementation.using.array.url");
+    }
+    
+    public static String getQueueOperations() {
+    	return properties.getProperty("queue.queue.operations.url");
+    }
+    
+    public static String getQueuePracticeUrl() {
+    	return properties.getProperty("queue.practice.url");
+    }
     //Array Page URLs
     public static String getArrayUrl() {
 		return properties.getProperty("array.url");
