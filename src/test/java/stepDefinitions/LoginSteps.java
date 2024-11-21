@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import java.io.IOException;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -14,6 +16,7 @@ import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.LogHelper;
 
 public class LoginSteps {
 
@@ -29,6 +32,8 @@ public class LoginSteps {
 		this.loginPage = testContext.getLoginPage();
 		this.homePage = testContext.getHomePage();
 	}
+	String expectedOutput;
+	String actMsg;
 
 	@Given("The user is logged in with username {string} and password {string}")
 	public void the_user_is_logged_in_with_username_and_password(String username, String password) {
@@ -104,5 +109,23 @@ public class LoginSteps {
 	}
 
 	//---
-
+	
+	//Data driven test
+	@When("The user enter sheet {string} and {int} and click login button")
+	public void the_user_enter_sheet_and_and_click_login_button(String sheetName, Integer rowNum) throws IOException {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+		expectedOutput=loginPage.enterLoginCredentialsFromExcel(sheetName, rowNum);
+		LogHelper.info("when: "+expectedOutput);
+		actMsg=loginPage.clickLoginBtn();
+		LogHelper.info("when: "+actMsg);
+	}
+	//Data driven test
+	@Then("user should be redirected according to user name and pass word")
+	public void user_should_be_redirected_according_to_user_name_and_pass_word() {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+		Assert.assertEquals(actMsg, expectedOutput, "Result do not match");
+		LogHelper.info(actMsg);
+	}
 }
