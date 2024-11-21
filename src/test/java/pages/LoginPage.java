@@ -1,5 +1,7 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.WebDriver;
@@ -8,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 //import org.testng.Assert;
 
+import utils.ConfigReader;
+import utils.ExcelReader;
+import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class LoginPage extends BasePage {
@@ -90,6 +95,13 @@ public class LoginPage extends BasePage {
 	public void clickLogin() {
 		loginButton.click();
 	}
+	//data test
+
+	public String clickLoginBtn() {
+		loginButton.click();
+		String msg = alert.getText();
+		return msg;
+	}
 
 	public String actMsg() {
 //	 JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -99,5 +111,34 @@ public class LoginPage extends BasePage {
 		WebElement activeElement = driver.switchTo().activeElement();
 		String messageStr = activeElement.getAttribute("validationMessage");
 		return messageStr;
+	}
+	//Data test
+	public String enterLoginCredentialsFromExcel(String sheetName, int rowNumber) throws IOException {
+		String expectedOutput;
+		String excelFilePath = ConfigReader.getExcelFilePath();
+		LogHelper.info(excelFilePath);
+		LogHelper.info(getCurrentUrl());
+		ExcelReader excelReader = new ExcelReader(excelFilePath);
+
+		try {
+			String userName = excelReader.getCellData(sheetName, rowNumber, 0);
+			String passWord = excelReader.getCellData(sheetName, rowNumber, 1);
+			 expectedOutput = excelReader.getCellData(sheetName, rowNumber, 2);
+			
+			System.out.println("userName to enter " + userName);
+			enterUserNamePwd(userName,passWord);
+		} finally {
+			excelReader.close();
+		}
+		return expectedOutput;
+	}
+	//Data Test
+	public void enterUserNamePwd(String userName, String PassWord) {
+		usernameField.clear();
+		usernameField.sendKeys(userName);
+		passwordField.clear();
+		passwordField.sendKeys(PassWord);
+		
+
 	}
 }
