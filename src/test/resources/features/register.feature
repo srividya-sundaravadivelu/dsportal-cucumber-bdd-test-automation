@@ -7,8 +7,6 @@ Feature: Testing Registration feature in dsportalapp.herokuapp
     Given User open browser with url https://dsportalapp.herokuapp.com
     When User clicks Get Started button
     Then User should see Home page
-   
-
 
 @TC_reg1
 Scenario: Register Scenario for all empty fields
@@ -46,7 +44,25 @@ Scenario: Register Scenario for all empty fields
     When The user enters a valid "username" and "password" with less than 8 characters 
     |username|password|password confirmation|
     |Numpyninja|lessnum |lessnum|
-    Then User should get error message "Password should contain at least 8 characters"
+    Then User should get error message "Password should contain at least 8 characters" 
+
+		#data driven test
+		@Register_ExcelData
+		Scenario Outline: User submits registration details from excel sheet  
+		Given The user is on Register page
+		  When The user submits registration details from "registrationSheet" for row <rowIndex>
+		  Then User should get error message for register
+		
+		Examples:
+		  | rowIndex |
+		  | 1        |
+		  | 2        |
+		  | 3        |
+		  | 4        |
+		  | 5        |
+
+    
+    
     
     
     

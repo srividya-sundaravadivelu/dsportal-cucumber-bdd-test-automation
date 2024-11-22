@@ -1,5 +1,6 @@
 package pages;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -10,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import io.cucumber.datatable.DataTable;
+import utils.ConfigReader;
+import utils.ExcelReader;
 import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
@@ -46,11 +49,11 @@ public class RegisterPage extends BasePage {
 	@FindBy(xpath="//*[class='alert alert-primary']")
 	private WebElement errorMessage;
 
-	public void clickRegister() {
-		WebDriverWaitUtility.waitForElementToBeClickable(registerlink);
-		registerlink.click();
-		
-	}
+//	public void clickRegister() {
+//		WebDriverWaitUtility.waitForElementToBeClickable(registerlink);
+//		registerlink.click();
+//		
+//	}
 	
 	public void clickRegisterButton() {
 		WebDriverWaitUtility.waitForElementToBeClickable(regbutton);
@@ -111,17 +114,20 @@ public class RegisterPage extends BasePage {
 	}
 	
 	public void enterUsername(String username) {
+		WebDriverWaitUtility.waitForElementToBeVisible(usernamebox);
 		usernamebox.clear();
 		usernamebox.sendKeys(username);
 		
 	}
 	
 	public void enterPassword(String password) {
+		WebDriverWaitUtility.waitForElementToBeVisible(passwordbox);
 		passwordbox.clear();
 		passwordbox.sendKeys(password);
 		
 	}
 	public void enterCofmPassword(String cpassword) {
+		WebDriverWaitUtility.waitForElementToBeVisible(confirmpwbox);
 		confirmpwbox.clear();
 		confirmpwbox.sendKeys(cpassword);
 		
@@ -179,4 +185,26 @@ public class RegisterPage extends BasePage {
 		return msg;
 		
 	}
+	
+	public String[] submitRegistrationDetailsFromExcel(String sheetName, int rowIndex) throws IOException {
+	    String[] registrationData = getRegistrationDataFromExcel(sheetName, rowIndex);
+	    enterUsername(registrationData[0]);
+	    enterPassword(registrationData[1]);
+	    enterCofmPassword(registrationData[2]);	    
+	    clickRegisterButton();
+	    
+	    // Return both expectedOutput and validation 
+	    return new String[]{registrationData[3], registrationData[4]};
+	}
+	 
+    private String[] getRegistrationDataFromExcel(String sheetName, int rowIndex) throws IOException {	
+		ExcelReader excelReader = new ExcelReader(ConfigReader.getExcelFilePath());
+	        String username =excelReader.getCellData(sheetName, rowIndex, 0);  
+	        String password = excelReader.getCellData(sheetName, rowIndex, 1);  
+	        String confirmPassword = excelReader.getCellData(sheetName, rowIndex, 2);  
+	        String expectedOutput = excelReader.getCellData(sheetName, rowIndex, 3);    
+	        String errorLocator = excelReader.getCellData(sheetName, rowIndex, 4); 
+	        return new String[]{username, password, confirmPassword, expectedOutput,errorLocator};
+    }
+
 }
