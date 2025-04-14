@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_3.9.9'   // Use your Maven tool name configured in Jenkins
-        jdk 'jdk-21'          // Use the JDK version you installed and named in Jenkins
-        allure 'allure-2.30.0'
+        maven 'Maven_Home'   // Use your Maven tool name configured in Jenkins
+        jdk 'my JDK'          // Use the JDK version you installed and named in Jenkins
+        allure 'allure'
     }
 
     stages {
