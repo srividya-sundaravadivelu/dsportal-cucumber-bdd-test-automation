@@ -65,12 +65,6 @@ pipeline {
                 jdk: '',
                 results: [[path: 'target/allure-results']]
             ])
-        }
-        // Mark pipeline as FAILURE if there was a compilation issue or no tests were run
-        failure {
-            script {
-                currentBuild.result = 'FAILURE'
-            }
-        }
+        }       
     }
 }
