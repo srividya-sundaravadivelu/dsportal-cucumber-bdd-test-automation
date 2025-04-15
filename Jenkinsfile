@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_Home'       // Maven tool name configured in Jenkins
-        jdk 'my JDK'             // JDK version configured in Jenkins
-        allure 'allure'          // Allure commandline tool in Jenkins
+        maven 'Maven_Home'
+        jdk 'my JDK'
+        allure 'allure'
     }
 
     stages {
@@ -29,21 +29,19 @@ pipeline {
                 }
             }
         }
-
-        stage('Generate Allure Report') {
-            steps {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'target/allure-results']]
-                ])
-            }
-        }
     }
 
     post {
         always {
+            // Archive build artifacts
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+
+            // Generate Allure Report even if tests fail
+            allure([
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'target/allure-results']]
+            ])
         }
     }
 }
