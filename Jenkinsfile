@@ -45,11 +45,5 @@ pipeline {
         always {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
-
-        failure {
-            mail to: 'srividya18.2002@gmail.com',
-                 subject: "❌ Build Failed: ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
-                 body: "The Jenkins build has failed. Please check the console output for details:\n${env.BUILD_URL}"
-        }
     }
 }
