@@ -68,7 +68,9 @@ pipeline {
         }
         // Mark pipeline as FAILURE if there was a compilation issue or no tests were run
         failure {
-            currentBuild.result = 'FAILURE'
+            script {
+                currentBuild.result = 'FAILURE'
+            }
         }
     }
 }
