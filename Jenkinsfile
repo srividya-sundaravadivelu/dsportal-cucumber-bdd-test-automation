@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_Home'   // Use your Maven tool name configured in Jenkins
-        jdk 'my JDK'          // Use the JDK version you installed and named in Jenkins
-        allure 'allure'
+        maven 'Maven_Home'       // Maven tool name configured in Jenkins
+        jdk 'my JDK'             // JDK version configured in Jenkins
+        allure 'allure'          // Allure commandline tool in Jenkins
     }
 
     stages {
@@ -22,15 +22,21 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                script {
+                    catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                        sh 'mvn clean test'
+                    }
+                }
             }
         }
 
         stage('Generate Allure Report') {
             steps {
-                allure includeProperties: false,
-                       jdk: '',
-                       results: [[path: 'target/allure-results']]
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'target/allure-results']]
+                ])
             }
         }
     }
@@ -39,10 +45,11 @@ pipeline {
         always {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
+
         failure {
             mail to: 'srividya18.2002@gmail.com',
-                 subject: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                 body: "Check Jenkins console for details: ${env.BUILD_URL}"
+                 subject: "❌ Build Failed: ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
+                 body: "The Jenkins build has failed. Please check the console output for details:\n${env.BUILD_URL}"
         }
     }
 }
