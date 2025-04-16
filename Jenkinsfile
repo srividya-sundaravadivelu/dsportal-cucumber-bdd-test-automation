@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean install'
+                bat 'mvn clean compile'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Set build result to UNSTABLE in case of failures
                     catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
-                        bat 'mvn clean test'
+                        bat 'mvn test'
                     }
                 }
             }
